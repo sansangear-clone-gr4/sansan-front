@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { __postPost } from "../../redux/modules/postSlice";
 
 function Form() {
   const [post, setPost] = useState({
@@ -10,9 +11,15 @@ function Form() {
     category: "",
   });
 
-  // const dispatch = useDispatch();
+  const { title, content, imageFile, price, category } = payload;
+  const formData = new FormData();
+  formData.append("imageFile");
+  const dispatch = useDispatch();
+
   console.log(post);
-  const OnSubmitHandler = () => {};
+  const OnSubmitHandler = () => {
+    dispatch(__postPost(formData));
+  };
 
   return (
     <form onSubmit={OnSubmitHandler}>
@@ -40,6 +47,8 @@ function Form() {
           <option value="accessories">Accessories</option>
         </select>
       </div>
+      <input type="file" />
+
       <div>
         <textarea
           row="50"
