@@ -4,20 +4,22 @@ import LayOut from "../components/LayOut/LayOut";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __userCheck } from "../redux/modules/userSlice";
+import { instance } from "../core/api/axios";
+import { Navigate } from "react-router-dom";
 
 function SignUp() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const [idPtag, setidPtag] = useState(
-    "아이디를 입력해 주세요. (영문소문자/숫자, 4~16자)"
-  );
+  const [userName, setUserName] = useState("");
+  const [idPtag, setidPtag] = useState("영문소문자/숫자, 4~16자");
   const [PWPtag, setPWPtag] = useState(
-    "영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자"
+    "영문 대문자/소문자/숫자/특수문자를 모두 포함한, 10자~16자"
   );
   const [PWConfirm, setPWConfirm] = useState("");
   const [PWConfirmP, setPWConfirmP] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [codeCheck, setCodeCheck] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const [codeCheckP, setCodeCheckP] = useState("");
   const adminCode = "!!!!@@@##$admin123";
 
   const dispatch = useDispatch();
@@ -46,7 +48,7 @@ function SignUp() {
     if (userCheck === false) {
       setidPtag("중복된 아이디입니다");
     } else if (userCheck === true) {
-      setidPtag("사용가능한 아이디입니다");
+      setidPtag(`${userId}는사용가능한 아이디입니다`);
     } else {
       setidPtag("아이디를 다시한번 확인해주세요");
     }
@@ -70,9 +72,12 @@ function SignUp() {
   };
 
   const adminCodeCHK = (code) => {
+    console.log(code);
     if (code === adminCode) {
-      setCodeCheck(true);
-      return;
+      setAdmin(true);
+      setCodeCheckP("확인되었습니다");
+    } else {
+      setCodeCheckP("코드를 다시한번 확인해주세요");
     }
   };
 
@@ -87,11 +92,44 @@ function SignUp() {
     }
     if (!userCheck) {
       alert("아이디중복확인을 해주세요");
+      return;
     }
-    if (!codeCheck) {
-      const data = { userId: userId, password, password };
+    if (!admin) {
+      const data = { userId: userId, password: password, userName: userName };
+      console.log(data);
+    } else {
+      const data = {
+        userId: userId,
+        password: password,
+        userName: userName,
+        admin: admin,
+      };
+      console.log(data);
+
+      instance
+        .post("/api/user/signup", data)
+        .then((res) => {
+          const signUpMsg = res.data.msg;
+          const sighUpCode = res.data.statusCode;
+
+          if (sighUpCode === 200) {
+            setUserName("");
+            setUserId("");
+            setPassword("");
+            setPWConfirm("");
+            alert(signUpMsg);
+            Navigate("/login");
+            return;
+          } else {
+            alert("정보를 정확히 입력해주세요");
+          }
+        })
+        .catch((error) => {
+          alert("로그인실패", error);
+        });
     }
   };
+
   return (
     <>
       <Header />
@@ -135,7 +173,11 @@ function SignUp() {
               </div>
               <div className="userName">
                 <p>Name *</p>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                />
               </div>
             </div>
             <div className="adminCheck">
@@ -149,14 +191,15 @@ function SignUp() {
               {isAdmin ? (
                 <>
                   <p>관리자 코드를 입력해주세요</p>
-                  <input type="password" onChange={adminCodeCHK} />
+                  <input
+                    type="password"
+                    onChange={(e) => {
+                      adminCodeCHK(e.target.value);
+                    }}
+                  />
                 </>
               ) : null}
-              {!codeCheck ? (
-                <p>코드를 다시한번 확인해주세요</p>
-              ) : (
-                <p>확인되었습니다</p>
-              )}
+              {<p>{codeCheckP}</p>}
             </div>
             <button type="submit">Sign Up</button>
           </form>
@@ -166,5 +209,4 @@ function SignUp() {
     </>
   );
 }
-// 나준영은 신이다
 export default SignUp;
