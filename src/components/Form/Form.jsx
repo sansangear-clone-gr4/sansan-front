@@ -11,14 +11,18 @@ function Form() {
     category: "",
   });
 
-  const { title, content, imageFile, price, category } = payload;
-  const formData = new FormData();
-  formData.append("imageFile");
+  const postForm = new FormData();
+  postForm.append("title", post.title);
+  postForm.append("content", post.content);
+  postForm.append("imageFile", post.imageFile);
+  postForm.append("price", post.price);
+  postForm.append("category", post.category);
+
   const dispatch = useDispatch();
 
   console.log(post);
   const OnSubmitHandler = () => {
-    dispatch(__postPost(formData));
+    dispatch(__postPost(postForm));
   };
 
   return (
