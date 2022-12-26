@@ -248,7 +248,7 @@ const STSignUpFeild = styled.div`
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid transparent;
-    width: 300px;
+    width: 100%;
     height: 40px;
     padding-left: 8px;
     padding-right: 8px;
