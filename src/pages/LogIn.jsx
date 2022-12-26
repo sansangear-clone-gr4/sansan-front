@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
@@ -64,16 +64,32 @@ function LogIn() {
                   }}
                 />
               </div>
-              <div className="buttons">
-                <button type="submit">Login</button>
-                <button type="button" onClick={navigate("/signup")}>
+              <STButton>
+                <button type="submit" className="login">
+                  Login
+                </button>
+                <button
+                  type="button"
+                  onClick={() => navigate("/signup")}
+                  className="signup"
+                >
                   SignUp
                 </button>
-              </div>
-              <div className="additional">
-                <span>Find ID | Find Password</span>
-                <span>Non-Member</span>
-              </div>
+              </STButton>
+              <STAdditional>
+                <span
+                // onClick={alert("죄송합니다 준비중입니다༼ つ ◕_◕ ༽つ")}
+                // style={{ cursor: "pointer" }}
+                >
+                  Find ID | Find Password
+                </span>
+                <span
+                // onClick={alert("죄송합니다 준비중입니다༼ つ ◕_◕ ༽つ")}
+                // style={{ cursor: "pointer" }}
+                >
+                  Non-Member
+                </span>
+              </STAdditional>
             </form>
           </STInner>
         </STContainer>
@@ -84,25 +100,82 @@ function LogIn() {
 }
 
 const STContainer = styled.div`
-  padding-top: 7.5rem;
+  margin-top: 45px;
   display: flex;
   justify-content: center;
+  padding: 7.5rem 0;
+  font-size: 18px;
+  color: #000;
 `;
 
 const STInner = styled.div`
   flex: 0 0 auto;
   width: 33.33333333%;
-  form {
-    div {
-      width: 100%;
-      margin: 0 0 0.5rem;
-      p {
-        font-size: 0.75rem;
-        font-weight: bold;
-        display: block !important;
-        margin-bottom: 0.5rem;
-      }
+
+  div {
+    width: 100%;
+    margin: 0 0 0.5rem;
+    p {
+      font-size: 18px;
+      font-weight: bold;
+      display: block !important;
+      margin-bottom: 0.5rem;
     }
+    input {
+      width: 100%;
+      height: 1.5rem;
+      margin-bottom: 0.25rem;
+      border: solid 1px #ddd;
+      padding: 0.65rem;
+      font-size: 18px;
+    }
+  }
+`;
+
+const STButton = styled.div`
+  .login {
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    width: 105%;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: normal !important;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .signup {
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    width: 105%;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: normal !important;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    color: black;
+    background-color: white;
+    border: solid 1px #ddd;
+  }
+`;
+
+const STAdditional = styled.div`
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-size: 13px;
+    font-weight: bold;
   }
 `;
 
