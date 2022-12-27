@@ -29,7 +29,8 @@ function SignUp() {
 
   //id, pw 정규식
   function isId(asValue) {
-    const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,16}$/g;
+    var regExp =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return regExp.test(asValue);
   }
   function isPassword(asValue) {
@@ -43,7 +44,7 @@ function SignUp() {
   // 아이디 중복확인
   const IdDubChk = () => {
     if (!isId(userId)) {
-      setidPtag("영문소문자와 숫자를 포함한, 4~16자의 아이디를 입력해주세요");
+      setidPtag("이메일을 다시한번 확인해 주세요");
       return;
     }
     dispatch(__userCheck(userId));
