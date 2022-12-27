@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import LayOut from "../components/LayOut/LayOut";
-import { instance } from "../core/api/axios";
+import { postLogin } from "../core/login/queries";
 import { getCookie, setCookie } from "../shared/Cookie";
 function LogIn() {
   const navigate = useNavigate();
@@ -12,13 +12,10 @@ function LogIn() {
   const [password, setPassword] = useState("");
   const go_login = () => {
     const login_data = { userId: userId, password: password };
-    instance
-      .post("/user/login", login_data)
+
+    postLogin(login_data)
       .then((res) => {
-        console.log(res);
-        //토큰 저장-> 쿠키에 token이라는 이름으로 저장
-        const token = res.headers.authorization;
-        setCookie("userToken", token);
+        setCookie("userToken", res.headers.authorization);
         console.log(getCookie("userToken"));
 
         const loginMsg = res.data.msg;
@@ -28,7 +25,7 @@ function LogIn() {
           setUserId("");
           setPassword("");
           alert(loginMsg);
-          window.location.href = "/";
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -56,7 +53,7 @@ function LogIn() {
                 />
                 <p>Password</p>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="비밀번호"
                   value={password}
                   onChange={(e) => {
@@ -77,18 +74,8 @@ function LogIn() {
                 </button>
               </STButton>
               <STAdditional>
-                <span
-                // onClick={alert("죄송합니다 준비중입니다༼ つ ◕_◕ ༽つ")}
-                // style={{ cursor: "pointer" }}
-                >
-                  Find ID | Find Password
-                </span>
-                <span
-                // onClick={alert("죄송합니다 준비중입니다༼ つ ◕_◕ ༽つ")}
-                // style={{ cursor: "pointer" }}
-                >
-                  Non-Member
-                </span>
+                <span>Find ID | Find Password</span>
+                <span>Non-Member</span>
               </STAdditional>
             </form>
           </STInner>
