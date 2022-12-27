@@ -1,33 +1,46 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { __getPost } from "../../redux/modules/postSlice";
+import "./DetailPost.css";
+
 function DetailPost() {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  console.log(id);
+  useEffect(() => {
+    dispatch(__getPost(+id));
+  }, []);
+  //실행 1번
+
+  const { post } = useSelector((state) => state.post);
+  console.log(post);
   return (
-    <div>
+    <div className="inner">
       <section>
-        <h3 id="proprietary name">22FW ALPHA JACKET BROWN</h3>
+        <h3 id="proprietary name">{post.title}</h3>
         <div>
-          <p id="description">
-            NYLON 100%
-            <br />
-            Logo printed on the front side
-            <br />
-            Asymmetric back wing
-          </p>
-          <p>
-            나일론 100%
-            <br />
-            전면 로고 나염
-            <br />
-            후면 비대칭 날개 디테일
-          </p>
+          <p id="description">{post.content}</p>
         </div>
-        <p id="size">
-          Model wears size 2<br />
-          Model 182cm / 65kg
-        </p>
-        <p>제품 색상은 제품 컷과 가장 유사합니다.</p>
       </section>
-      <section style={{ display: "flex" }}>image 섹션입니다</section>
-      <h3>KRW 159,000</h3>
-      <section style={{ display: "flex" }}>섹션입니다3</section>
+      <section className="section image">
+        <img src="{post.imageFile}" alt="상품사진" />
+      </section>
+      <section>
+        <h3 id="price">{post.price}</h3>
+        <p>Size</p>
+        <a>Size Guide</a>
+        <select>
+          <option value="" selected>
+            SELECT A SIZE
+          </option>
+          <option value="size1">1</option>
+          <option value="size2">2</option>
+          <option value="size3">3</option>
+        </select>
+        <button type="submit">Add to Cart</button>
+      </section>
     </div>
   );
 }

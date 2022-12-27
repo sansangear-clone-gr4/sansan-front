@@ -1,47 +1,28 @@
 {
   "posts": [
     {
-      "title": "123",
-      "content": "12",
+      "title": "FW 신상",
+      "content": "어쩌고 저쩌고 등등등등 아미리라미ㅓ리머리머ㅣㅇ",
       "imageFile": "",
-      "price": "12122",
+      "price": "123123",
       "category": "",
       "id": 1
     },
     {
-      "title": "121",
-      "content": "12",
+      "title": "",
+      "content": "",
       "imageFile": "",
-      "price": "12",
+      "price": "",
       "category": "",
       "id": 2
     },
     {
-      "title": "12",
-      "content": "12",
+      "title": "jdjd",
+      "content": "djdjdj",
       "imageFile": "",
-      "price": "12",
-      "category": "",
+      "price": "7889",
+      "category": "top",
       "id": 3
-    },
-    {
-      "title": "12",
-      "content": "12",
-      "imageFile": "",
-      "price": "12",
-      "category": "",
-      "id": 4
-    },
-    {
-      "title": "12",
-      "content": "12",
-      "imageFile": "",
-      "price": "12",
-      "category": "",
-      "id": 5
-    },
-    {
-      "id": 6
     }
   ]
 }

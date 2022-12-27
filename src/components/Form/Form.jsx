@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { __postPost } from "../../redux/modules/postSlice";
 
 function Form() {
@@ -10,19 +10,29 @@ function Form() {
     price: "",
     category: "",
   });
-
-  const postForm = new FormData();
-  postForm.append("title", post.title);
-  postForm.append("content", post.content);
-  postForm.append("imageFile", post.imageFile);
-  postForm.append("price", post.price);
-  postForm.append("category", post.category);
+  const [img, setImg] = useState(null);
+  const data = useSelector((state) => state);
+  console.log(data);
 
   const dispatch = useDispatch();
 
+  const getImage = (e) => {
+    console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  };
+
   console.log(post);
-  const OnSubmitHandler = () => {
-    dispatch(__postPost(postForm));
+  const OnSubmitHandler = (e) => {
+    e.preventDefault();
+    // const postForm = new FormData();
+    // postForm.append("title", post.title);
+    // postForm.append("content", post.content);
+    // postForm.append("imageFile", post.imageFile);
+    // postForm.append("price", post.price);
+    // postForm.append("category", post.category);
+    // dispatch(__postPost(postForm));
+    console.log(post, "확인");
+    dispatch(__postPost(post));
   };
 
   return (
@@ -35,6 +45,7 @@ function Form() {
           onChange={(e) => {
             const { value } = e.target;
             setPost({ ...post, title: value });
+            console.log(post);
           }}
         />
         <select
@@ -51,7 +62,7 @@ function Form() {
           <option value="accessories">Accessories</option>
         </select>
       </div>
-      <input type="file" />
+      <input type="file" onChange={getImage} />
 
       <div>
         <textarea
@@ -76,7 +87,7 @@ function Form() {
           }}
         />
       </div>
-      <button type="submit">ADD POST</button>
+      <button>ADD POST</button>
     </form>
   );
 }
