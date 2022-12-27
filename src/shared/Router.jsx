@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Bucket from "../pages/Bucket";
 import Detail from "../pages/Detail";
 import EditPost from "../pages/EditPost";
 import FAQ from "../pages/FAQ";
@@ -21,6 +22,9 @@ function Router() {
         <Route path="/posting" element={<Posting />} />
         <Route path="/editPost/:id" element={<EditPost />} />
         <Route path="/detail/:id" element={<Detail />} />
+
+        <Route path="/bucket" element={<Bucket />} />
+
       </Routes>
     </BrowserRouter>
   );

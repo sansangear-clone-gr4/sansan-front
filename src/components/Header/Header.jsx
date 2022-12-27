@@ -1,5 +1,7 @@
 function Header() {
-  return <div>난 헤더</div>;
+
+  return <div>난헤더</div>;
+
 }
 
 export default Header;
