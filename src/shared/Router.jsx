@@ -22,7 +22,9 @@ function Router() {
         <Route path="/posting" element={<Posting />} />
         <Route path="/editPost/:id" element={<EditPost />} />
         <Route path="/detail/:id" element={<Detail />} />
+
         <Route path="/bucket" element={<Bucket />} />
+
       </Routes>
     </BrowserRouter>
   );
