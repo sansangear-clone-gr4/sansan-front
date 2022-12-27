@@ -14,7 +14,7 @@ export const __userCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await instance.get(`/user/signup/${payload}`);
+      const { data } = await instance.get(`/user/idCheck/${payload}`);
       console.log("중복확인:", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {

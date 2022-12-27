@@ -22,7 +22,6 @@ function SignUp() {
   const [adminCheck, setAdminCheck] = useState(false);
   const [codeCheckP, setCodeCheckP] = useState("");
   const adminCode = process.env.REACT_APP_ADMINTOKEN;
-  console.log(adminCode);
   const [adminToken, setAdminToken] = useState("");
   console.log(admin);
   const dispatch = useDispatch();
