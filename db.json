@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "title": "FW 신상",
+      "content": "어쩌고 저쩌고 등등등등 아미리라미ㅓ리머리머ㅣㅇ",
+      "imageFile": "",
+      "price": "123123",
+      "category": "",
+      "id": 1
+    },
+    {
+      "title": "",
+      "content": "",
+      "imageFile": "",
+      "price": "",
+      "category": "",
+      "id": 2
+    },
+    {
+      "title": "jdjd",
+      "content": "djdjdj",
+      "imageFile": "",
+      "price": "7889",
+      "category": "top",
+      "id": 3
+    }
+  ]
+}
