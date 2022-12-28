@@ -1,12 +1,12 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import LayOut from "../components/LayOut/LayOut";
-
+import { deleteCookie } from "../shared/Cookie";
+import { Navigate, useNavigate } from "react-router";
 
 function FAQ() {
-  const [newList, setNewList] = useState([]);
   const faqList = [
     {
       title: "주문 수량 제한이 있나요?",
@@ -96,6 +96,38 @@ function FAQ() {
       category: "배송",
     },
   ];
+  const [newList, setNewList] = useState([
+    faqList.map((faq) => {
+      return (
+        <li claaName="faq">
+          <div
+            className="category"
+            style={{
+              color: "#999",
+              marginBottom: "10px",
+            }}
+          >
+            {" "}
+            &#91;{faq.category}&#93;
+          </div>
+          <div
+            className="title"
+            style={{
+              marginBottom: "30px",
+              fontSize: "15px",
+              fontWeight: "bold",
+            }}
+          >
+            {faq.title}
+          </div>
+          <div className="content" style={{ margin: "0px 0px 20px 20px" }}>
+            {faq.content}
+          </div>
+        </li>
+      );
+    }),
+  ]);
+
   const listHandler = () => {
     setNewList(
       faqList.map((faq) => {
@@ -176,7 +208,7 @@ function FAQ() {
           <STmenuContainer>
             <div className="menubox">
               <h2>FAQS</h2>
-              <button onClick={listHandler} value="전체">
+              <button onClick={listHandler} value="전체" checked>
                 전체 &#62;
               </button>
               <button
@@ -214,7 +246,7 @@ function FAQ() {
           <STfaqContainer>
             <div className="FAQbox">
               <div className="FAQList">
-                <ul className="FAQ">{newList}</ul>
+                <ul className="FAQ"> {newList}</ul>
               </div>
             </div>
           </STfaqContainer>
@@ -273,4 +305,3 @@ const STfaqContainer = styled.div`
 `;
 
 export default FAQ;
-
