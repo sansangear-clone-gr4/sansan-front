@@ -1,54 +1,77 @@
-.containerWrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 1500px;
-  margin: 50px;
+.container{
+  width: 440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 140px 0;
 }
 
+.containerWrap {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  width: 440px;
+  height: 1500px;
+  margin: 0 auto;
+}
+.inputTitle{
+  width: 440px;
+  /* margin: 0 auto; */
+}
+.inputTitle input{
+  padding: 20px;
+}
+.inputTitle ::placeholder{
+  font-size: 13.5px;
+}
+.inputTitle select{
+  color: #000;
+}
+.image{
+  width: 440px;
+}
 .inputTitle > input,
 select {
-  width: 100%;
+  width: 440px;
   height: 1.5rem;
   margin-bottom: 0.25rem;
   border: solid 1px #ddd;
-  padding: 0.65rem;
-  font-size: 18px;
+  padding: 20px;
+  font-size: 13.5px;
 }
-
+.inputContent{
+  margin: 0 auto;
+}
 .inputContent > textarea {
-  width: 100%;
-  height: 1.5rem;
+  width: 440px;
+  height: 100px;
   margin-bottom: 0.25rem;
   border: solid 1px #ddd;
-  padding: 0.65rem;
-  font-size: 18px;
+  padding: 20px;
+  font-size: 13.5px;
 }
 
 .inputPrice > input {
-  width: 100%;
+  width: 440px;
   height: 1.5rem;
   margin-bottom: 0.25rem;
   border: solid 1px #ddd;
   padding: 0.65rem;
-  font-size: 18px;
+  font-size: 13.5px;
+  padding: 20px;
 }
 
 .addBtn {
   color: #fff;
   background-color: #000;
   cursor: pointer;
-  margin-top: 15px;
-  display: inline-block;
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  border-radius: 1px;
-  width: 105%;
+  border: 0 none;
+  width: 440px;
   height: 40px;
   padding-left: 8px;
   padding-right: 8px;
-  font-weight: normal !important;
-  vertical-align: middle;
+  font-weight: normal;
   text-align: center;
-  white-space: nowrap;
 }
+ input{
+  margin-bottom: 15px;
+ }

@@ -88,34 +88,37 @@ function LogIn() {
 }
 
 const STContainer = styled.div`
-  margin-top: 45px;
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  /* position: absolute; */
   padding: 7.5rem 0;
-  font-size: 18px;
+  font-size: 13.5px;
   color: #000;
 `;
 
 const STInner = styled.div`
-  flex: 0 0 auto;
-  width: 33.33333333%;
+  /* flex: 0 0 auto; */
+  /* width: 33.33333333%; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   div {
-    width: 100%;
-    margin: 0 0 0.5rem;
+    width: 440px;
     p {
-      font-size: 18px;
+      font-size: 13.5px;
       font-weight: bold;
       display: block !important;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
     }
     input {
-      width: 100%;
+      width: 440px;
       height: 1.5rem;
       margin-bottom: 0.25rem;
       border: solid 1px #ddd;
-      padding: 0.65rem;
-      font-size: 18px;
+      padding: 20px;
+      font-size: 13.5px;
     }
   }
 `;
@@ -129,7 +132,7 @@ const STButton = styled.div`
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid transparent;
-    width: 105%;
+    width: 440px;
     height: 40px;
     padding-left: 8px;
     padding-right: 8px;
@@ -144,7 +147,7 @@ const STButton = styled.div`
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid transparent;
-    width: 105%;
+    width: 440px;
     height: 40px;
     padding-left: 8px;
     padding-right: 8px;
@@ -162,8 +165,8 @@ const STAdditional = styled.div`
   display: flex;
   justify-content: space-between;
   span {
+    margin-top: 15px;
     font-size: 13px;
-    font-weight: bold;
   }
 `;
 

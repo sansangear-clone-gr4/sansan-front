@@ -5,7 +5,6 @@ import './style.css'
 
 
 function Main() {
-  console.log(getCookie("userToken"));
   return (
     <>
       <Header />
