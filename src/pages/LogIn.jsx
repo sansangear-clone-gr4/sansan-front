@@ -15,6 +15,7 @@ function LogIn() {
 
     postLogin(login_data)
       .then((res) => {
+        alert("!!");
         setCookie("userToken", res.headers.authorization);
         console.log(getCookie("userToken"));
 
@@ -25,13 +26,13 @@ function LogIn() {
           setUserId("");
           setPassword("");
           alert(loginMsg);
-          navigate("/");
         }
       })
       .catch((error) => {
         alert(error.responce.data.msg);
         console.log(error);
       });
+    navigate("/");
   };
 
   return (
