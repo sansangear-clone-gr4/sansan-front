@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
-import "../../pages/reset.css"
+import "../../pages/reset.css";
 import "./Form.css";
 
 function Form() {
@@ -40,7 +40,6 @@ function Form() {
   };
 
   return (
-
     <div className="container">
       <form className="containerWarp" onSubmit={OnSubmitHandler}>
         <div className="inputTitle">
@@ -62,7 +61,7 @@ function Form() {
               setPost({ ...post, category: value });
             }}
           >
-            <option value="" selected>
+            <option value="" defaultValue>
               Category
             </option>
             <option value="0">Outer</option>
@@ -71,10 +70,11 @@ function Form() {
             <option value="3">Accessories</option>
           </select>
         </div>
-        <input type="file" onChange={getImage} className="image"/>
+        <input type="file" onChange={getImage} className="image" />
         <div className="inputContent">
           <textarea
-            rows="20" cols="100"
+            rows="20"
+            cols="100"
             type="text"
             id="content"
             placeholder="상품의 설명을 입력해주세요"

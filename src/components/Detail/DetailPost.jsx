@@ -22,8 +22,7 @@ function DetailPost() {
     size: size,
     productNum: productNum,
   });
-  console.log(size);
-  console.log(id);
+
   useEffect(() => {
     dispatch(__getPost(+id));
   }, []);
@@ -45,7 +44,7 @@ function DetailPost() {
     setProductNum(productNum - 1);
     setTotalPrice(productNum * post.price);
   };
-  console.log(size, productNum);
+
   useEffect(() => {
     setBucket({
       size: size,
@@ -66,8 +65,7 @@ function DetailPost() {
     dispatch(__postBucket(payload));
     alert("장바구니에 추가되었습니다");
   };
-  console.log("bucket:", bucket);
-  console.log("size:", size, "quantity:", productNum);
+
   return (
     <div className="inner">
       <section>
@@ -78,8 +76,7 @@ function DetailPost() {
       </section>
 
       <section className="section_image">
-        <img src="{post.imageFile}" alt="상품사진" />
-
+        <img src={post.imageUrl} alt="상품사진" />
       </section>
       <section>
         <h3 id="price">{post.price}</h3>
@@ -100,8 +97,6 @@ function DetailPost() {
             <button onClick={() => navigate("/shop")}>Delete</button>
           </>
         ) : null}
-        <button type="submit">Add To Cart </button>
-
         {size ? (
           <div className="orderBox">
             <div className="quantity">
@@ -115,7 +110,6 @@ function DetailPost() {
         <button type="submit" onClick={addCartHandler}>
           Add to Cart
         </button>
-
       </section>
     </div>
   );
