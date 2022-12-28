@@ -27,7 +27,7 @@ function DetailPost() {
         </div>
       </section>
       <section className="section image">
-        <img src="{post.imageFile}" alt="상품사진" />
+        <img src={post.imageUrl} alt="상품사진" />
       </section>
       <section>
         <h3 id="price">{post.price}</h3>

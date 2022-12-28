@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
 import "./Form.css";
 
@@ -11,6 +12,8 @@ function Form() {
     category: "",
   });
   const [img, setImg] = useState(null);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
