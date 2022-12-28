@@ -1,43 +1,43 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { __postPost } from "../../redux/modules/postSlice";
+import "./Form.css";
 
 function Form() {
   const [post, setPost] = useState({
     title: "",
     content: "",
-    imageFile: "",
     price: "",
     category: "",
   });
   const [img, setImg] = useState(null);
-  const data = useSelector((state) => state);
-  console.log(data);
 
   const dispatch = useDispatch();
 
   const getImage = (e) => {
-    console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   };
 
-  console.log(post);
   const OnSubmitHandler = (e) => {
     e.preventDefault();
-    // const postForm = new FormData();
-    // postForm.append("title", post.title);
-    // postForm.append("content", post.content);
-    // postForm.append("imageFile", post.imageFile);
-    // postForm.append("price", post.price);
-    // postForm.append("category", post.category);
-    // dispatch(__postPost(postForm));
-    console.log(post, "확인");
-    dispatch(__postPost(post));
+    const postForm = new FormData();
+    postForm.append("title", post.title);
+    postForm.append("price", Number(post.price));
+    postForm.append("category", post.category);
+    postForm.append("content", post.content);
+    postForm.append("file", img);
+    for (let key of postForm.keys()) {
+      console.log(key);
+    }
+    for (let value of postForm.values()) {
+      console.log(value);
+    }
+    dispatch(__postPost(postForm));
   };
 
   return (
-    <form onSubmit={OnSubmitHandler}>
-      <div>
+    <form className="containerWarp" onSubmit={OnSubmitHandler}>
+      <div className="inputTitle">
         <input
           type="text"
           placeholder="이름"
@@ -56,6 +56,9 @@ function Form() {
             setPost({ ...post, category: value });
           }}
         >
+          <option value="" selected>
+            Category
+          </option>
           <option value="outer">Outer</option>
           <option value="top">Top</option>
           <option value="bottom">Bottom</option>
@@ -64,10 +67,8 @@ function Form() {
       </div>
       <input type="file" onChange={getImage} />
 
-      <div>
+      <div className="inputContent">
         <textarea
-          row="50"
-          cols="80"
           type="text"
           id="content"
           placeholder="내용"
@@ -77,9 +78,9 @@ function Form() {
           }}
         />
       </div>
-      <div>
+      <div className="inputPrice">
         <input
-          type="text"
+          type="number"
           placeholder="가격"
           onChange={(e) => {
             const { value } = e.target;
@@ -87,7 +88,7 @@ function Form() {
           }}
         />
       </div>
-      <button>ADD POST</button>
+      <button className="addBtn"> Add Post</button>
     </form>
   );
 }

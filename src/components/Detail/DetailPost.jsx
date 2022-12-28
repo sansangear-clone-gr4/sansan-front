@@ -12,7 +12,9 @@ function DetailPost() {
   useEffect(() => {
     dispatch(__getPost(+id));
   }, []);
-  //실행 1번
+  //(1)
+  //useParam 으로 id 값을 가져와서
+  //렌더링될때 __getPost로  id값을 전달
 
   const { post } = useSelector((state) => state.post);
   console.log(post);
