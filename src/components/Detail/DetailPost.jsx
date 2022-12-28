@@ -64,13 +64,15 @@ function DetailPost() {
   return (
     <div className="inner">
       <section>
-        <h3 id="proprietary name">{post.title}</h3>
+        <h3 id="proprietary">{post.title}</h3>
         <div>
           <p id="description">{post.content}</p>
         </div>
       </section>
-      <section className="section image">
-        <img src={post.imageUrl} alt="상품사진" />
+
+      <section className="section_image">
+        <img src="{post.imageFile}" alt="상품사진" />
+
       </section>
       <section>
         <h3 id="price">{post.price}</h3>

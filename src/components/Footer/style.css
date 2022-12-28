@@ -3,6 +3,8 @@
     display: flex;
     justify-content: space-between;
     padding: 14px 40px;
+    font-size: 13.5px;
+    font-weight: bold;
 }
 
 .menu_buttom li{

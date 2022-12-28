@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
+import "../../pages/reset.css"
 import "./Form.css";
 
 function Form() {
@@ -39,60 +40,62 @@ function Form() {
   };
 
   return (
-    <form className="containerWarp" onSubmit={OnSubmitHandler}>
-      <div className="inputTitle">
-        <input
-          type="text"
-          placeholder="이름"
-          minLength="2"
-          onChange={(e) => {
-            const { value } = e.target;
-            setPost({ ...post, title: value });
-            console.log(post);
-          }}
-        />
-        <select
-          name="category"
-          placeholder="카테고리"
-          onChange={(e) => {
-            const { value } = e.target;
-            setPost({ ...post, category: value });
-          }}
-        >
-          <option value="" selected>
-            Category
-          </option>
-          <option value="outer">Outer</option>
-          <option value="top">Top</option>
-          <option value="bottom">Bottom</option>
-          <option value="accessories">Accessories</option>
-        </select>
-      </div>
-      <input type="file" onChange={getImage} />
-
-      <div className="inputContent">
-        <textarea
-          type="text"
-          id="content"
-          placeholder="내용"
-          onChange={(e) => {
-            const { value } = e.target;
-            setPost({ ...post, content: value });
-          }}
-        />
-      </div>
-      <div className="inputPrice">
-        <input
-          type="number"
-          placeholder="가격"
-          onChange={(e) => {
-            const { value } = e.target;
-            setPost({ ...post, price: value });
-          }}
-        />
-      </div>
-      <button className="addBtn"> Add Post</button>
-    </form>
+    <div className="container">
+      <form className="containerWarp" onSubmit={OnSubmitHandler}>
+        <div className="inputTitle">
+          <input
+            type="text"
+            placeholder="제품명을 입력해주세요"
+            minLength="2"
+            onChange={(e) => {
+              const { value } = e.target;
+              setPost({ ...post, title: value });
+              console.log(post);
+            }}
+          />
+          <select
+            name="category"
+            placeholder="카테고리"
+            onChange={(e) => {
+              const { value } = e.target;
+              setPost({ ...post, category: value });
+            }}
+          >
+            <option value="" selected>
+              Category
+            </option>
+            <option value="0">Outer</option>
+            <option value="1">Top</option>
+            <option value="2">Bottom</option>
+            <option value="3">Accessories</option>
+          </select>
+        </div>
+        <input type="file" onChange={getImage} className="image"/>
+        <div className="inputContent">
+          <textarea
+            rows="20" cols="100"
+            type="text"
+            id="content"
+            placeholder="상품의 설명을 입력해주세요"
+            onChange={(e) => {
+              const { value } = e.target;
+              setPost({ ...post, content: value });
+            }}
+          />
+        </div>
+        <div className="inputPrice">
+          <input
+            type="number"
+            placeholder="가격을 입력해주세요"
+            onChange={(e) => {
+              const { value } = e.target;
+              setPost({ ...post, price: value });
+            }}
+          />
+        </div>
+        <button className="addBtn"> Add Post</button>
+      </form>
+    </div>
   );
 }
 
