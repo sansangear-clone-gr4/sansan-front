@@ -1,35 +1,37 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import LayOut from "../components/LayOut/LayOut";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __userCheck } from "../redux/modules/userSlice";
-import { instance } from "../core/api/axios";
-import { Navigate } from "react-router-dom";
+import { __signUp, __userCheck } from "../redux/modules/userSlice";
+
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [idPtag, setidPtag] = useState("영문소문자/숫자, 4~16자");
-  const [PWPtag, setPWPtag] = useState(
-    "영문 대문자/소문자/숫자/특수문자를 모두 포함한, 10자~16자"
-  );
   const [PWConfirm, setPWConfirm] = useState("");
   const [PWConfirmP, setPWConfirmP] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [adminCheck, setAdminCheck] = useState(false);
+
   const [codeCheckP, setCodeCheckP] = useState("");
   const adminCode = process.env.REACT_APP_ADMINTOKEN;
   const [adminToken, setAdminToken] = useState("");
-  console.log(admin);
   const dispatch = useDispatch();
-  // 아이디에따른 출력값 넣어줄 p태그
-
+  const [userDubCheck, setUserDubCheck] = useState(false);
+  const [userPWCHK, setUserPWCHK] = useState(false);
+  const [idPtag, setidPtag] = useState("영문소문자/숫자, 4~16자");
+  const [PWPtag, setPWPtag] = useState(
+    "영문 대문자/소문자/숫자/특수문자를 모두 포함한, 10자~16자"
+  );
+  const navigate = useNavigate();
   //id, pw 정규식
   function isId(asValue) {
-    const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,16}$/g;
+    var regExp =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return regExp.test(asValue);
   }
   function isPassword(asValue) {
@@ -39,22 +41,40 @@ function SignUp() {
   }
   //id중복체크 true, false 여부
   const userCheck = useSelector((state) => state.user.userCheck);
+  console.log(userCheck);
+
   // null, false, true 값 반환
   // 아이디 중복확인
-  const IdDubChk = () => {
-    if (!isId(userId)) {
-      setidPtag("영문소문자와 숫자를 포함한, 4~16자의 아이디를 입력해주세요");
-      return;
-    }
-    dispatch(__userCheck(userId));
+  useEffect(() => {
     if (userCheck === false) {
       setidPtag("중복된 아이디입니다");
     } else if (userCheck === true) {
-      setidPtag(`${userId}는사용가능한 아이디입니다`);
+      setidPtag(`${userId}는 사용가능한 아이디입니다`);
+      setUserDubCheck(true);
+      setUserId(userId);
+      console.log("중복확인여부:", userDubCheck);
     } else {
-      setidPtag("아이디를 다시한번 확인해주세요");
+      setidPtag("이메일을 기입해주세요");
     }
+  }, [userCheck]);
+  const IdDubChk = () => {
+    if (!isId(userId)) {
+      setidPtag("이메일 형식을 다시 확인해주세요");
+      return;
+    }
+    dispatch(__userCheck(userId));
+    console.log(userCheck);
+    // if (userCheck === false) {
+    //   setidPtag("중복된 아이디입니다");
+    // } else if (userCheck === true) {
+    //   setidPtag(`${userId}는 사용가능한 아이디입니다`);
+    //   setUserDubCheck(true);
+    //   console.log("중복확인여부:", userDubCheck);
+    // } else {
+    //   setidPtag("이메일 형식을 다시한번 확인해 주세요");
+    // }
   };
+
   const PWChk = () => {
     if (!isPassword(password)) {
       setPWPtag(
@@ -62,6 +82,7 @@ function SignUp() {
       );
     } else {
       setPWPtag("사용가능한 비밀번호 입니다");
+      setUserPWCHK(true);
     }
   };
 
@@ -70,72 +91,80 @@ function SignUp() {
       setPWConfirmP("비밀번호가 일치하지않습니다");
     } else {
       setPWConfirmP("확인되었습니다");
+      setPassword(password);
+
+      console.log("비밀번호확인여부:", userPWCHK);
     }
   };
 
   const adminCodeCHK = (code) => {
     console.log(code);
-    if (code === adminCode) {
+    if (code !== adminCode) {
+      setCodeCheckP("코드를 다시한번 확인해주세요");
+      return;
+    } else {
       setAdminCheck(true);
       setCodeCheckP("확인되었습니다");
       setAdminToken(code);
-    } else {
-      setCodeCheckP("코드를 다시한번 확인해주세요");
+      console.log(code);
     }
   };
 
   const signUpHandler = () => {
-    if (isId && isPassword !== true) {
+    if (userDubCheck && userPWCHK !== true) {
       alert("비밀번호와, 아이디를 다시한번 확인해 주세요");
       return;
     }
-    if (password !== PWConfirm) {
+    if (userPWCHK !== true) {
       alert("비밀번호를 다시 한번 확인해주세요");
       return;
     }
-    if (!userCheck) {
+    if (!userDubCheck) {
       alert("아이디중복확인을 해주세요");
       return;
     }
     if (userName === null) {
       alert("이름을 정확히 기입해주세요 ");
+      return;
     }
-
-    if (!adminCheck) {
-      const data = { userId: userId, password: password, userName: userName };
-      console.log(data);
-    } else {
-      const data = {
-        userId: userId,
-        password: password,
-        userName: userName,
-        admin: admin,
-        adminToken: adminToken,
-      };
-      console.log(data);
-
-      instance
-        .post("/api/user/signup", data)
-        .then((res) => {
-          const signUpMsg = res.data.msg;
-          const sighUpCode = res.data.statusCode;
-          if (sighUpCode === 200) {
-            setUserName("");
-            setUserId("");
-            setPassword("");
-            setPWConfirm("");
-            alert(signUpMsg);
-            Navigate("/login");
-            return;
-          } else {
-            alert("정보를 정확히 입력해주세요");
-          }
-        })
-        .catch((error) => {
-          alert("로그인실패", error);
-        });
+    if (admin && !adminCodeCHK) {
+      alert("staff코드가 잘못되었습니다");
+      return;
     }
+    console.log(userId, password, userName, adminToken, admin);
+    const data = {
+      userId: userId,
+      password: password,
+      userName: userName,
+      admin: admin,
+      adminToken: adminToken,
+    };
+    dispatch(__signUp(data));
+    navigate("/login");
+
+    // instance.post("/api/user/signup", data);
+    // alert(data)
+    //   .then((res) => {
+    //     const signUpMsg = res.data.msg;
+    //     const signUpCode = res.data.statusCode;
+    //     if (signUpCode === 200) {
+    //       setUserName("");
+    //       setUserId("");
+    //       setPassword("");
+    //       setPWConfirm("");
+    //       alert(signUpMsg);
+    //       Navigate("/login");
+    //       console.log(signUpMsg, signUpCode);
+    //     } else {
+    //       alert("정보를 정확히 입력해주세요");
+    //       return;
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     alert("로그인실패", error);
+    //   });
   };
+
   return (
     <>
       <Header />
@@ -163,7 +192,6 @@ function SignUp() {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      console.log(e);
                     }}
                     onBlur={PWChk}
                   />
@@ -293,4 +321,5 @@ const STAdmin = styled.div`
     font-size: 0.75rem;
   }
 `;
+
 export default SignUp;

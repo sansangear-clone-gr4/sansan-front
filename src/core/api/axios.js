@@ -5,7 +5,7 @@ export const instance = axios.create({
   baseURL: "http://54.180.126.52",
   headers: {
     "Access-Control-Allow-Origin": "*",
-    "Content-type": "multipart/form-data",
+    //"Content-type": "multipart/form-data",
   },
 });
 //req헤더에 토큰

@@ -2,7 +2,9 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { useState } from "react";
 import styled from "styled-components";
-import { Collapse } from "antd";
+import LayOut from "../components/LayOut/LayOut";
+
+
 function FAQ() {
   const [newList, setNewList] = useState([]);
   const faqList = [
@@ -94,6 +96,39 @@ function FAQ() {
       category: "배송",
     },
   ];
+  const listHandler = () => {
+    setNewList(
+      faqList.map((faq) => {
+        return (
+          <li claaName="faq">
+            <div
+              className="category"
+              style={{
+                color: "#999",
+                marginBottom: "10px",
+              }}
+            >
+              {" "}
+              &#91;{faq.category}&#93;
+            </div>
+            <div
+              className="title"
+              style={{
+                marginBottom: "30px",
+                fontSize: "15px",
+                fontWeight: "bold",
+              }}
+            >
+              {faq.title}
+            </div>
+            <div className="content" style={{ margin: "0px 0px 20px 20px" }}>
+              {faq.content}
+            </div>
+          </li>
+        );
+      })
+    );
+  };
 
   const faqMenuHandler = (category) => {
     setNewList(
@@ -101,9 +136,29 @@ function FAQ() {
         if (faq.category === category) {
           return (
             <li claaName="faq">
-              <div className="category">{faq.category}</div>
-              <div className="title">{faq.title}</div>
-              <div className="content">{faq.content}</div>
+              <div
+                className="category"
+                style={{
+                  color: "#999",
+                  marginBottom: "10px",
+                }}
+              >
+                {" "}
+                &#91;{faq.category}&#93;
+              </div>
+              <div
+                className="title"
+                style={{
+                  marginBottom: "30px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                }}
+              >
+                {faq.title}
+              </div>
+              <div className="content" style={{ margin: "0px 0px 20px 20px" }}>
+                {faq.content}
+              </div>
             </li>
           );
         } else {
@@ -116,95 +171,106 @@ function FAQ() {
   return (
     <>
       <Header />
-      <STContainer>
-        <div className="menubox">
-          <h2>FAQS</h2>
-          <button
-            onClick={(e) => faqMenuHandler(e.target.value)}
-            value="주문/결제"
-          >
-            주문/결제{" "}
-          </button>
-          <button onClick={(e) => faqMenuHandler(e.target.value)} value="제품">
-            제품{" "}
-          </button>
-          <button onClick={(e) => faqMenuHandler(e.target.value)} value="배송">
-            배송{" "}
-          </button>
-          <button onClick={(e) => faqMenuHandler(e.target.value)} value="교환">
-            교환{" "}
-          </button>
-          <button
-            onClick={(e) => faqMenuHandler(e.target.value)}
-            value="취소/환불"
-          >
-            취소/환불{" "}
-          </button>
-        </div>
-        <div className="FAQbox">
-          <div className="FAQList">
-            <ul className="FAQ">{newList}</ul>
-          </div>
-        </div>
-      </STContainer>
+      <LayOut>
+        <STContainer>
+          <STmenuContainer>
+            <div className="menubox">
+              <h2>FAQS</h2>
+              <button onClick={listHandler} value="전체">
+                전체 &#62;
+              </button>
+              <button
+                onClick={(e) => faqMenuHandler(e.target.value)}
+                value="주문/결제"
+              >
+                주문/결제 &#62;
+              </button>
+              <button
+                onClick={(e) => faqMenuHandler(e.target.value)}
+                value="제품"
+              >
+                제품 &#62;
+              </button>
+              <button
+                onClick={(e) => faqMenuHandler(e.target.value)}
+                value="배송"
+              >
+                배송 &#62;
+              </button>
+              <button
+                onClick={(e) => faqMenuHandler(e.target.value)}
+                value="교환"
+              >
+                교환 &#62;
+              </button>
+              <button
+                onClick={(e) => faqMenuHandler(e.target.value)}
+                value="취소/환불"
+              >
+                취소/환불 &#62;
+              </button>
+            </div>
+          </STmenuContainer>
+          <STfaqContainer>
+            <div className="FAQbox">
+              <div className="FAQList">
+                <ul className="FAQ">{newList}</ul>
+              </div>
+            </div>
+          </STfaqContainer>
+        </STContainer>
+      </LayOut>
       <Footer />
     </>
   );
 }
 
 const STContainer = styled.div`
-  margin-top: 45px;
   display: flex;
   justify-content: center;
   padding: 7.5rem 0;
   font-size: 18px;
   color: #000;
+`;
+const STmenuContainer = styled.div`
+  flex: 0 0 auto;
+  width: 16.66666667%;
   h2 {
-    font-size: 18px;
-    margin-bottom: 37px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: bold;
   }
-  .menubox {
+  button {
     display: flex;
-    flex-direction: column;
-    button {
-      margin-bottom: 20px;
+    border: 1px solid transparent;
+    font-size: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: #ddd;
+    }
+    :active {
+      background-color: #ddd;
+    }
+    :visited {
+      background-color: black;
     }
   }
-  .FAQbox {
-    margin-top: 50px;
-    ul {
-      list-style: none;
-      li {
-        margin-bottom: 30px;
-      }
+`;
+const STfaqContainer = styled.div`
+  margin-top: 50px;
+  flex: 0 0 auto;
+  width: 50%;
+  ul {
+    list-style: none;
+    li {
+      margin-bottom: 20px;
+      font-size: 15px;
+      border-bottom: solid 1px #ddd;
+      padding-bottom: 10px;
     }
   }
 `;
 
 export default FAQ;
 
-// const { Panel } = Collapse;
-// const text = `
-//   A dog is a type of domesticated animal.
-//   Known for its loyalty and faithfulness,
-//   it can be found as a welcome guest in many households across the world.
-// `;
-// const App = () => {
-//   const onChange = (key) => {
-//     console.log(key);
-//   };
-//   return (
-//     <Collapse defaultActiveKey={['1']} onChange={onChange}>
-//       <Panel header="This is panel header 1" key="1">
-//         <p>{text}</p>
-//       </Panel>
-//       <Panel header="This is panel header 2" key="2">
-//         <p>{text}</p>
-//       </Panel>
-//       <Panel header="This is panel header 3" key="3">
-//         <p>{text}</p>
-//       </Panel>
-//     </Collapse>
-//   );
-// };
-// export default App;
