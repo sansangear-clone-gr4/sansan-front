@@ -1,0 +1,10 @@
+.cardwrap{
+    width: 1680px;
+    margin: 0 auto;
+    background: #000;
+}
+
+.card{
+    width: 300px;height: 500px;
+    background: white;
+}

@@ -4,7 +4,7 @@ body{
 }
 
 .mainpage{
-    width: 100vmax;
+    width: 100%;
     height: 100vmax;
     background-repeat: no-repeat;
     background-size: cover;
