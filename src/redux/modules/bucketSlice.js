@@ -12,7 +12,6 @@ export const __getBucket = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await instance3.get("/api/bucket");
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data.bucketList);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -42,7 +41,6 @@ export const __deleteBucket = createAsyncThunk(
   "deleteBucket",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const data = await instance3.delete(`/api/bucket/${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -83,7 +81,9 @@ export const bucketSlice = createSlice({
     },
     [__deleteBucket.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(state, action);
+      state.buckets = state.buckets.filter(
+        (bucket) => bucket.id !== action.meta.arg
+      );
     },
     [__deleteBucket.rejected]: (state, action) => {
       state.isLoading = false;

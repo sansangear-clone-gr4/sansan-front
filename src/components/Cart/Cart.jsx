@@ -7,105 +7,130 @@ import { __deleteBucket, __getBucket } from "../../redux/modules/bucketSlice";
 function Cart() {
   const dispatch = useDispatch();
   const [quantity, setquantity] = useState();
+  const [total, setTotal] = useState();
+  const [shipping, setShipping] = useState();
+  const [subtotal, setSubtotal] = useState(0);
   useEffect(() => {
     dispatch(__getBucket());
   }, [dispatch]);
+
   const bucket = useSelector((state) => state.bucket.buckets);
   console.log(bucket);
+  const sumPrice = () => {
+    let sum = 0;
+    bucket.forEach((i) => {
+      sum += i.price;
+      return sum;
+    });
+  };
+  useEffect(() => {
+    let add = 0;
+    bucket.map((i) => setSubtotal((add += i.price)));
+  }, [bucket]);
 
+  console.log(subtotal);
   const deleteBucketHandler = (id) => {
     console.log(id);
     dispatch(__deleteBucket(id));
   };
-  useEffect(() => {
-    dispatch(__deleteBucket());
-  }, [dispatch]);
+
   const minusHandler = () => {
-    setquantity(Number(quantity) + 1);
+    setquantity(+quantity + 1);
   };
   const plusHandler = () => {
-    setquantity(Number(quantity) + 1);
+    setquantity(+quantity + 1);
   };
+
   return (
     <STLayout>
-      <div className="bucket">
-        <h2>CART</h2>
-        {bucket.map((bucketItem) => {
-          return (
-            <STCard>
-              <STWrap>
-                <div className="innerWrap">
-                  <div className="thumbnail">
-                    <Link to={`/detail/${bucketItem.postId}`}>
-                      <img
-                        src={bucketItem.imageFile}
-                        alt="제품사진"
-                        width="78"
-                      ></img>
-                    </Link>
-                  </div>
-                  <div className="description">
-                    <strong className="prdName" title="상품명">
-                      <Link to={`detail/${bucketItem.postId}`}>
-                        {bucketItem.title}
-                      </Link>
-                    </strong>
-                    <ul className="bucketPrice">
-                      <li id>
-                        KRW
-                        <strong> {bucketItem.price}</strong>
-                        <span className="displaynone">
-                          <span></span>
-                        </span>
-                      </li>
-                    </ul>
-                    <ul className="option">
-                      <li className="size">[size:{bucketItem.size}]</li>
-                    </ul>
-                    <div className="quantity">
-                      <button onClick={minusHandler}>-</button>
-                      <p value={quantity}>{bucketItem.productNum}</p>
-                      <button onClick={plusHandler}>+</button>
+      {bucket.length !== 0 ? (
+        <>
+          <div className="bucket">
+            <h2>CART</h2>
+            {bucket.map((bucketItem) => {
+              return (
+                <STCard>
+                  <STWrap>
+                    <div className="innerWrap">
+                      <div className="thumbnail">
+                        <Link to={`/detail/${bucketItem.postId}`}>
+                          <img
+                            src={bucketItem.imageFile}
+                            alt="제품사진"
+                            width="78"
+                          ></img>
+                        </Link>
+                      </div>
+                      <div className="description">
+                        <strong className="prdName" title="상품명">
+                          <Link to={`detail/${bucketItem.postId}`}>
+                            {bucketItem.title}
+                          </Link>
+                        </strong>
+                        <ul className="bucketPrice">
+                          <li id>
+                            KRW
+                            <strong> {bucketItem.price}</strong>
+                            <span className="displaynone">
+                              <span></span>
+                            </span>
+                          </li>
+                        </ul>
+                        <ul className="option">
+                          <li className="size">[size:{bucketItem.size}]</li>
+                        </ul>
+                        <div className="quantity">
+                          <button onClick={() => minusHandler}>-</button>
+                          <p value={quantity}>{bucketItem.productNum}</p>
+                          <button onClick={() => plusHandler}>+</button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="deleteButton">
-                  <button onClick={() => deleteBucketHandler(bucketItem.id)}>
-                    Remove
-                  </button>
-                </div>
-              </STWrap>
-            </STCard>
-          );
-        })}
-      </div>
-      <STPrice>
-        <div className="wrapper">
-          <div className="summary">
-            <div>
-              <div className="name">Subtotal</div>
-              <span>배송비뺀total금액 KRW</span>
-            </div>
-            <div>
-              <div className="name">Shipping</div>
-              <div>배송비 KRW</div>
-            </div>
+                    <div className="deleteButton">
+                      <button
+                        onClick={() => deleteBucketHandler(bucketItem.id)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </STWrap>
+                </STCard>
+              );
+            })}
           </div>
-          <div className="total">
-            <div className="name">Total</div>
-            <span className="paymentPrice">
-              배송비 + 총금액 KRW
-              <strong className="price">총 금액</strong>
-            </span>
-          </div>
+          <STPrice>
+            <div className="wrapper">
+              <div className="summary">
+                <div>
+                  <div className="name">Subtotal</div>
+                  <span>{subtotal}</span>
+                </div>
+                <div>
+                  <div className="name">Shipping</div>
+                  <div>배송비 KRW</div>
+                </div>
+              </div>
+              <div className="total">
+                <div className="name">Total</div>
+                <span className="paymentPrice">
+                  {total}
+                  <strong className="price">총 금액</strong>
+                </span>
+              </div>
+            </div>
+            <div className="orderbutton">
+              <button onClick={() => alert("주문완료되었습니다!!!")}>
+                {" "}
+                Continue to Order
+              </button>
+            </div>
+          </STPrice>
+        </>
+      ) : (
+        <div style={{ marginTop: "200px" }}>
+          <p>장바구니가 비어있습니다.</p>
         </div>
-        <div className="orderbutton">
-          <button onClick={() => alert("주문완료되었습니다!!!")}>
-            {" "}
-            Continue to Order
-          </button>
-        </div>
-      </STPrice>
+      )}
     </STLayout>
   );
 }
