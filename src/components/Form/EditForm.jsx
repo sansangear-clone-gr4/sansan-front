@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
   __editPost,
   __getPost,
@@ -18,8 +19,10 @@ function EditForm() {
 
   const dispatch = useDispatch();
 
+  const { id } = useParams();
+
   useEffect(() => {
-    dispatch(__getPost(1));
+    dispatch(__getPost(+id));
   }, []);
   //렌더링될때 아이디값1 액션
   //나중에 param 쓰기
@@ -49,7 +52,7 @@ function EditForm() {
     postForm.append("category", editPost.category);
     postForm.append("content", editPost.content);
     postForm.append("file", img);
-    dispatch(__editPost(postForm));
+    dispatch(__editPost({ postForm, id }));
   };
 
   return (

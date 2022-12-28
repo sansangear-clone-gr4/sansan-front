@@ -1,38 +1,47 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { __getBucket } from "../../redux/modules/bucketSlice";
 
 function Cart() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(__getBucket());
+  }, [dispatch]);
+  const bucket = useSelector((state) => state);
+  console.log(bucket);
   return (
     <STContainer>
       <div>
         <h2>Cart</h2>
         <STBucket>
           <STPrdbox>
-            <div className="thumbnail">
-              {/* <Link to={`detail/${postId}`}> */}
-              {/* <img src={imageFile} alt="제품사진" width="78"></img> */}
-              {/* </Link> */}
+            {/* <div className="thumbnail">
+              <Link to={}>
+                <img src={} alt="제품사진" width="78"></img>
+              </Link>
             </div>
             <div className="description">
               <strong class="prdName" title="상품명">
-                {/* <Link to={`detail/${postId}`}>{title}</Link> */}
+                <Link to={`detail/${}`}>{}</Link>
               </strong>
               <ul className="price">
                 <li id>
                   "KRW"
-                  <strong>369,000</strong>
+                  <strong></strong>
                   <span className="displaynone">
                     <span></span>
                   </span>
                 </li>
               </ul>
               <ul className="option">
-                {/* <li className="size">[size:`${size}`]</li> */}
+                <li className="size">[size:`${size}`]</li>
               </ul>
               <div className="quantity">
                 <span className="stepper">수량 변경 구현</span>
               </div>
-            </div>
+            </div> */}
             <button>Remove</button>
           </STPrdbox>
         </STBucket>
