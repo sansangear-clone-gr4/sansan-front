@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { instance2 } from "../../core/api/axios";
+import { instance2, instance3 } from "../../core/api/axios";
 
 const initialState = {
   buckets: [],
@@ -12,8 +12,9 @@ export const __getBucket = createAsyncThunk(
   "getBucket",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance2.get("/api/bucket");
       console("장바구니:", data.data);
+      const data = await instance2.get("/api/bucket");
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -25,11 +26,12 @@ export const __postBucket = createAsyncThunk(
   "postBucket",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance2.post(
+      console.log(payload);
+      const data = await instance3.post(
         `/api/bucket/${payload[0]}`,
         payload[1]
       );
-      console.log(data.data);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -47,6 +49,7 @@ export const bucketSlice = createSlice({
     },
     [__postBucket.fulfilled]: (state, action) => {
       state.isLoading = false;
+
       state.buckets.push(action.payload);
     },
     [__postBucket.rejected]: (state, action) => {
