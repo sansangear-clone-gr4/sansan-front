@@ -1,0 +1,54 @@
+.containerWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 1500px;
+  margin: 50px;
+}
+
+.inputTitle > input,
+select {
+  width: 100%;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+  border: solid 1px #ddd;
+  padding: 0.65rem;
+  font-size: 18px;
+}
+
+.inputContent > textarea {
+  width: 100%;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+  border: solid 1px #ddd;
+  padding: 0.65rem;
+  font-size: 18px;
+}
+
+.inputPrice > input {
+  width: 100%;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+  border: solid 1px #ddd;
+  padding: 0.65rem;
+  font-size: 18px;
+}
+
+.addBtn {
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  margin-top: 15px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 1px;
+  width: 105%;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-weight: normal !important;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+}

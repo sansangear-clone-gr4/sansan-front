@@ -1,3 +1,51 @@
 {
   "posts": [
-    ]}
+    {
+      "title": "123",
+      "content": "123",
+      "imageFile": "",
+      "price": "123",
+      "category": "",
+      "id": 1
+    },
+    {
+      "title": "ss",
+      "content": "ss",
+      "imageFile": "",
+      "price": "ss",
+      "category": "",
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "title": "",
+      "content": "",
+      "imageFile": "",
+      "price": "1000000",
+      "category": "",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "title": "dfafa",
+      "content": "fafadf",
+      "imageFile": "",
+      "price": "1000000",
+      "category": "top",
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    }
+  ]
+}

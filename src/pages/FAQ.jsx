@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import LayOut from "../components/LayOut/LayOut";
 
+
 function FAQ() {
   const [newList, setNewList] = useState([]);
   const faqList = [
@@ -272,3 +273,4 @@ const STfaqContainer = styled.div`
 `;
 
 export default FAQ;
+
