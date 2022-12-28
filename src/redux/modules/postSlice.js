@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { instance, instance2 } from "../../core/api/axios";
 
 const initialState = {
   posts: [],
@@ -13,11 +14,7 @@ export const __postPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.post("http://localhost:3001/posts", payload, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
-        },
-      });
+      const data = await instance2.post("/api/posts", payload);
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -33,7 +30,7 @@ export const __getPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.get(`http://localhost:3001/posts/${payload}`);
+      const data = await instance.get(`/api/posts/${payload}`);
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -47,11 +44,15 @@ export const __editPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await axios.put("http://localhost:3001/posts", payload, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
-        },
-      });
+      const data = await instance2.put(
+        `api/posts/${payload.id}`,
+        payload.postForm,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
+          },
+        }
+      );
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
