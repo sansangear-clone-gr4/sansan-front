@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { __getPost } from "../../redux/modules/postSlice";
+import { getCookie } from "../../shared/Cookie";
 import "./DetailPost.css";
 
 function DetailPost() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   console.log(id);
@@ -41,7 +45,13 @@ function DetailPost() {
           <option value="size2">2</option>
           <option value="size3">3</option>
         </select>
-        <button type="submit">Add to Cart</button>
+        {getCookie("admin") === "true" ? (
+          <>
+            <button onClick={() => navigate("/editPost/:id")}>Edit</button>
+            <button onClick={() => navigate("/shop")}>Delete</button>
+          </>
+        ) : null}
+        <button type="submit">Add To Cart </button>
       </section>
     </div>
   );

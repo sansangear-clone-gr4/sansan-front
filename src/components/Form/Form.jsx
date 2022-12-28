@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
+import { getCookie } from "../../shared/Cookie";
 import "./Form.css";
 
 function Form() {
@@ -91,7 +92,9 @@ function Form() {
           }}
         />
       </div>
-      <button className="addBtn"> Add Post</button>
+      <button className="addBtn" onClick={() => navigate("/shop")}>
+        Add Post
+      </button>
     </form>
   );
 }
