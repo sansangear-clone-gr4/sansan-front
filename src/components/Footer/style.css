@@ -1,0 +1,12 @@
+.footerwrap{
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 40px;
+}
+
+.menu_buttom li{
+    float: left;
+    margin-left: 31px;
+    cursor: pointer;
+}
