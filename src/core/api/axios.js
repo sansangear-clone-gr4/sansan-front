@@ -16,6 +16,7 @@ export const instance2 = axios.create({
     "Content-type": "multipart/form-data",
   },
 });
+
 //req헤더에 토큰
 // 우리쪽 헤더에 토큰을 달았으니 필요한 부분에서 cookie 만 불러오면 되는건가
 instance2.interceptors.request.use((config) => {
