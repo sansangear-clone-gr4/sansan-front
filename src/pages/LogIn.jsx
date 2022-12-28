@@ -15,7 +15,7 @@ function LogIn() {
 
     postLogin(login_data)
       .then((res) => {
-        console.log(res.headers.authorization);
+        console.log(res);
         setCookie("userToken", res.headers.authorization);
         setCookie("admin", res.data.role);
         console.log(getCookie("admin"));

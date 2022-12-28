@@ -1,10 +1,8 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LayOut from "../components/LayOut/LayOut";
-import { deleteCookie } from "../shared/Cookie";
-import { Navigate, useNavigate } from "react-router";
 
 function FAQ() {
   const faqList = [

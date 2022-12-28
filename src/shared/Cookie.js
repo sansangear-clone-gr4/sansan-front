@@ -14,7 +14,8 @@ const setCookie = (name, value, exp = 5) => {
 };
 
 const deleteCookie = (name) => {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
+  document.cookie =
+    name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;domain=localhost;path=[/]";
 };
 
 export { getCookie, setCookie, deleteCookie };
