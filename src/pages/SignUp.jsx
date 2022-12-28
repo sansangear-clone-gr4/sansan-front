@@ -230,7 +230,7 @@ function SignUp() {
                 </div>
               </STSignUpForm>
               <STAdmin>
-                <span>IM STAFF</span>
+                <span>I'M STAFF</span>
                 <input
                   type="checkbox"
                   onClick={(e) => {
@@ -254,6 +254,7 @@ function SignUp() {
                       onChange={(e) => {
                         adminCodeCHK(e.target.value);
                       }}
+                      className="admin_input"
                     />
                   </>
                 ) : null}
@@ -274,22 +275,20 @@ const STContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 7.5rem 0;
-  font-size: 18px;
+  font-size: 13.5px;
   color: #000;
 `;
 
 const STSignUpFeild = styled.div`
   padding-left: 1.875rem !important;
   padding-right: 1.875rem !important;
-  flex: 0 0 auto;
-  width: 33.33333333%;
   button {
     margin-top: 10px;
     margin-bottom: 30px;
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid transparent;
-    width: 100%;
+    width: 440px;
     height: 40px;
     padding-left: 8px;
     padding-right: 8px;
@@ -310,17 +309,17 @@ const STSignUpFeild = styled.div`
 const STSignUpForm = styled.div`
   div {
     input {
-      width: 100%;
+      width: 440px;
       height: 40px;
       margin-bottom: 1.2rem;
       border: solid 1px #ddd;
       padding: 0.65rem;
-      font-size: 18px;
+      font-size: 13.5px;
     }
     p {
       margin-top: 20px;
       text-align: left;
-      font-size: 18px;
+      font-size: 13.5px;
       font-weight: bold;
     }
     .ptag {
@@ -334,6 +333,9 @@ const STAdmin = styled.div`
   span {
     font-weight: bold;
     font-size: 0.75rem;
+  }
+  .admin_input{
+    width: 440px;
   }
 `;
 

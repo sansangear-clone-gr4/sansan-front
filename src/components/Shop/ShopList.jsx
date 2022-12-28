@@ -10,6 +10,7 @@ function ShopList(props) {
   const navigate = useNavigate();
 
   return <div className="cardwrap">
+    살려주세요 제가 죄송해요 ,,,,,
   </div>;
 }
 

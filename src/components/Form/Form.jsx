@@ -77,7 +77,7 @@ function Form() {
             rows="20" cols="100"
             type="text"
             id="content"
-            placeholder="상품의 설명을 입력해주세요"
+            placeholder="제품 정보를 입력해주세요"
             onChange={(e) => {
               const { value } = e.target;
               setPost({ ...post, content: value });

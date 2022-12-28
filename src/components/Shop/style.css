@@ -8,3 +8,10 @@
     width: 300px;height: 500px;
     background: white;
 }
+
+.mask{
+    background: white;
+}
+.mask:hover{
+    opacity: 0;
+}
