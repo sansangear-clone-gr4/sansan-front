@@ -140,6 +140,7 @@ function SignUp() {
       adminToken: adminToken,
     };
     dispatch(__signUp(data));
+    alert("회원가입이 완료되었습니다");
     navigate("/login");
 
     // instance.post("/api/user/signup", data);
@@ -174,16 +175,20 @@ function SignUp() {
             <form onSubmit={signUpHandler}>
               <STSignUpForm>
                 <div className="IDform">
-                  <p>ID *</p>
+                  <p>Email *</p>
                   <input
                     type="text"
                     value={userId}
                     onChange={(e) => setUserId(e.target.value)}
                   />
+                  {
+                    <p className="ptag" style={{ color: "green" }}>
+                      {idPtag}
+                    </p>
+                  }
                   <button type="button" className="dubBtn" onClick={IdDubChk}>
                     중복확인
                   </button>
-                  {<p className="ptag">{idPtag}</p>}
                 </div>
                 <div className="PWForm">
                   <p>Password *</p>
@@ -195,7 +200,11 @@ function SignUp() {
                     }}
                     onBlur={PWChk}
                   />
-                  {<p className="ptag">{PWPtag}</p>}
+                  {
+                    <p className="ptag" style={{ color: "green" }}>
+                      {PWPtag}
+                    </p>
+                  }
                   <p>Confirm Password *</p>
                   <input
                     type="password"
@@ -205,7 +214,11 @@ function SignUp() {
                     }}
                     onBlur={PWConfirmChk}
                   />
-                  {<p className="ptag">{PWConfirmP}</p>}
+                  {
+                    <p className="ptag" style={{ color: "green" }}>
+                      {PWConfirmP}
+                    </p>
+                  }
                 </div>
                 <div className="userName">
                   <p>Name *</p>
@@ -271,7 +284,8 @@ const STSignUpFeild = styled.div`
   flex: 0 0 auto;
   width: 33.33333333%;
   button {
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid transparent;
@@ -297,13 +311,14 @@ const STSignUpForm = styled.div`
   div {
     input {
       width: 100%;
-      height: 1.5rem;
-      margin-bottom: 0.25rem;
+      height: 40px;
+      margin-bottom: 1.2rem;
       border: solid 1px #ddd;
       padding: 0.65rem;
       font-size: 18px;
     }
     p {
+      margin-top: 20px;
       text-align: left;
       font-size: 18px;
       font-weight: bold;

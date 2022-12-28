@@ -15,10 +15,10 @@ function LogIn() {
 
     postLogin(login_data)
       .then((res) => {
-        alert("!!");
+        console.log(res);
         setCookie("userToken", res.headers.authorization);
-        console.log(getCookie("userToken"));
-
+        setCookie("admin", res.data.role);
+        console.log(getCookie("admin"));
         const loginMsg = res.data.msg;
         const loginCode = res.data.statusCode;
         console.log(loginMsg, loginCode);
@@ -29,7 +29,7 @@ function LogIn() {
         }
       })
       .catch((error) => {
-        alert(error.responce.data.msg);
+        alert("아이디 비밀번호를 다시한번 확인해주세요");
         console.log(error);
       });
     navigate("/");
