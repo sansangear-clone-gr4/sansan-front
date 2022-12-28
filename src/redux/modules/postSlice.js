@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { instance, instance2 } from "../../core/api/axios";
 
-
 const initialState = {
   posts: [],
   post: {},

@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { __getPost } from "../../redux/modules/postSlice";
+
+import { getCookie } from "../../shared/Cookie";
+
 import { __postBucket } from "../../redux/modules/bucketSlice";
+
 import "./DetailPost.css";
 
 function DetailPost() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [size, setSize] = useState();
   const [productNum, setProductNum] = useState(1);
@@ -86,6 +93,15 @@ function DetailPost() {
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+
+        {getCookie("admin") === "true" ? (
+          <>
+            <button onClick={() => navigate("/editPost/:id")}>Edit</button>
+            <button onClick={() => navigate("/shop")}>Delete</button>
+          </>
+        ) : null}
+        <button type="submit">Add To Cart </button>
+
         {size ? (
           <div className="orderBox">
             <div className="quantity">
@@ -99,6 +115,7 @@ function DetailPost() {
         <button type="submit" onClick={addCartHandler}>
           Add to Cart
         </button>
+
       </section>
     </div>
   );
