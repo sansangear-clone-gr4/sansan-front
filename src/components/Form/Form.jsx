@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
 import "../../pages/reset.css";
 import "./Form.css";
@@ -21,7 +21,6 @@ function Form() {
   const getImage = (e) => {
     setImg(e.target.files[0]);
   };
-
 
   const OnSubmitHandler = (e) => {
     alert("상품이 추가 되었습니다.");
@@ -58,8 +57,6 @@ function Form() {
     }
   };
   return (
-
-
     <>
       <div className="container">
         <form className="containerWarp" onSubmit={OnSubmitHandler}>

@@ -2,16 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-  __deleteBucket,
-  __editBucket,
-  __getBucket,
-} from "../../redux/modules/bucketSlice";
-import { __editPost } from "../../redux/modules/postSlice";
+import { __deleteBucket, __getBucket } from "../../redux/modules/bucketSlice";
 
 function Cart() {
   const dispatch = useDispatch();
-  const [quantity, setquantity] = useState();
   const [total, setTotal] = useState();
   const [shipping, setShipping] = useState();
   const [subtotal, setSubtotal] = useState(0);
@@ -33,7 +27,7 @@ function Cart() {
     } else {
       setShipping(0);
     }
-  });
+  }, [subtotal]);
 
   console.log(subtotal);
   const deleteBucketHandler = (id) => {
@@ -41,7 +35,7 @@ function Cart() {
     dispatch(__deleteBucket(id));
   };
 
-  let newB;
+  // let newB;
   // const minusHandler = (id) => {
   //   bucket.map((b) => {
   //     if (b.id === id) {

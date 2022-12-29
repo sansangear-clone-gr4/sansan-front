@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { instance2, instance3 } from "../../core/api/axios";
+import { instance3 } from "../../core/api/axios";
 
 const initialState = {
   buckets: [],
