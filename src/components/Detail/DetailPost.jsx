@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { __deletePost, __getPost } from "../../redux/modules/postSlice";
 
 import { getCookie } from "../../shared/Cookie";
-
 import { __postBucket } from "../../redux/modules/bucketSlice";
 
+import "../../pages/reset.css"
 import "./DetailPost.css";
 
 function DetailPost() {
@@ -80,8 +80,8 @@ function DetailPost() {
 
 
   return (
-    <div className="container">
-      <section>
+    <div className="detail_container">
+      <section className="container_body">
         <h3 id="proprietary">{post.title}</h3>
         <div>
           <p id="description">{post.content}</p>
@@ -91,7 +91,7 @@ function DetailPost() {
       <section className="section_image">
         <img src={post.imageUrl} alt="상품사진" />
       </section>
-      <section>
+      <section className="section_option">
         <h3 id="price">{post.price}</h3>
         <p>Size</p>
         <a>Size Guide</a>
@@ -121,7 +121,7 @@ function DetailPost() {
             <div className="price">{totalPrice}</div>
           </div>
         ) : null}
-        <button type="submit" onClick={addCartHandler}>
+        <button type="submit" onClick={addCartHandler} className="cart_button">
           Add to Cart
         </button>
       </section>
