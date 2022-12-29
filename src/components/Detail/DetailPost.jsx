@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getPost } from "../../redux/modules/postSlice";
+import { __deletePost, __getPost } from "../../redux/modules/postSlice";
 
 import { getCookie } from "../../shared/Cookie";
 
@@ -36,6 +36,7 @@ function DetailPost() {
   useEffect(() => {
     setTotalPrice(productNum * post.price);
   }, [productNum, post.price]);
+
   const plusHandler = () => {
     setProductNum(productNum + 1);
     setTotalPrice(productNum * post.price);
@@ -52,6 +53,7 @@ function DetailPost() {
       productNum: productNum,
     });
   }, [productNum, size]);
+
   const addCartHandler = () => {
     if (size === undefined) {
       alert("사이즈와, 수량을 선택해 주세요 ");
@@ -66,10 +68,18 @@ function DetailPost() {
     dispatch(__postBucket(payload));
     alert("장바구니에 추가되었습니다");
   };
+
+  const deleteHandler = (id) => {
+    console.log("찍는");
+    dispatch(__deletePost(id));
+    // alert("상품이 삭제 되었습니다.");
+    // window.location.href = "/main";
+  };
+
   console.log("bucket:", bucket);
   console.log("size:", size, "quantity:", productNum);
   return (
-    <div className="inner">
+    <div className="container">
       <section>
         <h3 id="proprietary">{post.title}</h3>
         <div>
@@ -78,8 +88,7 @@ function DetailPost() {
       </section>
 
       <section className="section_image">
-        <img src="{post.imageFile}" alt="상품사진" />
-
+        <img src={post.imageUrl} alt="상품사진" />
       </section>
       <section>
         <h3 id="price">{post.price}</h3>
@@ -96,11 +105,10 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={() => navigate("/editPost/:id")}>Edit</button>
+            <button onClick={deleteHandler(id)}>Edit</button>
             <button onClick={() => navigate("/shop")}>Delete</button>
           </>
         ) : null}
-        <button type="submit">Add To Cart </button>
 
         {size ? (
           <div className="orderBox">
@@ -115,7 +123,6 @@ function DetailPost() {
         <button type="submit" onClick={addCartHandler}>
           Add to Cart
         </button>
-
       </section>
     </div>
   );

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   __editPost,
   __getPost,
   __postPost,
 } from "../../redux/modules/postSlice";
+import "./EditForm.css";
 
 function EditForm() {
   const [editPost, setEditPost] = useState({
@@ -19,11 +20,14 @@ function EditForm() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(__getPost(+id));
   }, []);
+
   //렌더링될때 아이디값1 액션
   //나중에 param 쓰기
   const { post: olddata } = useSelector((state) => state.post);
@@ -45,6 +49,7 @@ function EditForm() {
   };
 
   const OnSubmitEditHandler = (e) => {
+    alert("상품이 수정 되었습니다.");
     e.preventDefault();
     const postForm = new FormData();
     postForm.append("title", editPost.title);
@@ -56,67 +61,71 @@ function EditForm() {
   };
 
   return (
-    <form onSubmit={OnSubmitEditHandler}>
-      <div>
-        <input
-          type="text"
-          value={editPost.title}
-          placeholder="이름"
-          minLength="2"
-          onChange={(e) => {
-            const { value } = e.target;
-            setEditPost({ ...editPost, title: value });
-            console.log(editPost);
-          }}
-        />
-        <select
-          name="category"
-          value={editPost.category}
-          placeholder="카테고리"
-          onChange={(e) => {
-            const { value } = e.target;
-            setEditPost({ ...editPost, category: value });
-          }}
-        >
-          <option value="" selected>
-            CATEGORY
-          </option>
-          <option value="outer">Outer</option>
-          <option value="top">Top</option>
-          <option value="bottom">Bottom</option>
-          <option value="accessories">Accessories</option>
-        </select>
-      </div>
-      <input type="file" onChange={getImage} />
+    <div className="container">
+      <form className="containerWrap" onSubmit={OnSubmitEditHandler}>
+        <div lassName="inputTitle">
+          <input
+            type="text"
+            value={editPost.title}
+            placeholder="이름"
+            minLength="2"
+            onChange={(e) => {
+              const { value } = e.target;
+              setEditPost({ ...editPost, title: value });
+              console.log(editPost);
+            }}
+          />
+          <select
+            name="category"
+            value={editPost.category}
+            placeholder="카테고리"
+            onChange={(e) => {
+              const { value } = e.target;
+              setEditPost({ ...editPost, category: value });
+            }}
+          >
+            <option value="" selected>
+              CATEGORY
+            </option>
+            <option value="outer">Outer</option>
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+        <input type="file" onChange={getImage} className="image" />
 
-      <div>
-        <textarea
-          row="50"
-          cols="80"
-          value={editPost.content}
-          type="text"
-          id="content"
-          placeholder="내용"
-          onChange={(e) => {
-            const { value } = e.target;
-            setEditPost({ ...editPost, content: value });
-          }}
-        />
-      </div>
-      <div>
-        <input
-          type="number"
-          value={Number(editPost.price)}
-          placeholder="가격"
-          onChange={(e) => {
-            const { value } = e.target;
-            setEditPost({ ...editPost, price: value });
-          }}
-        />
-      </div>
-      <button>Edit Post</button>
-    </form>
+        <div className="inputContent">
+          <textarea
+            row="50"
+            cols="80"
+            value={editPost.content}
+            type="text"
+            id="content"
+            placeholder="내용"
+            onChange={(e) => {
+              const { value } = e.target;
+              setEditPost({ ...editPost, content: value });
+            }}
+          />
+        </div>
+        <div className="inputPrice">
+          <input
+            type="number"
+            value={Number(editPost.price)}
+            placeholder="가격"
+            onChange={(e) => {
+              const { value } = e.target;
+              setEditPost({ ...editPost, price: value });
+            }}
+          />
+        </div>
+        <button className="addBtn">Edit Post</button>
+      </form>
+    </div>
   );
 }
+
+//onClick={navigate("/shop")}
 
 export default EditForm;

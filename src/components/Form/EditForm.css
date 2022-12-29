@@ -19,6 +19,7 @@
   /* margin: 0 auto; */
 }
 .inputTitle input {
+  width: 440px;
   padding: 20px;
 }
 .inputTitle ::placeholder {
@@ -30,7 +31,7 @@
 .image {
   width: 440px;
 }
-.inputTitle > input,
+/* .inputTitle > input,
 select {
   width: 440px;
   height: 1.5rem;
@@ -38,7 +39,7 @@ select {
   border: solid 1px #ddd;
   padding: 20px;
   font-size: 13.5px;
-}
+} */
 .inputContent {
   margin: 0 auto;
 }
