@@ -1,7 +1,6 @@
-.inner {
-  display: flex;
-}
-
-.section image {
-  display: auto;
+.container {
+  width: 440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 140px 0;
 }

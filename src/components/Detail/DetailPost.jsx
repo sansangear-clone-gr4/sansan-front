@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getPost } from "../../redux/modules/postSlice";
+import { __deletePost, __getPost } from "../../redux/modules/postSlice";
 
 import { getCookie } from "../../shared/Cookie";
 
@@ -35,6 +35,7 @@ function DetailPost() {
   useEffect(() => {
     setTotalPrice(productNum * post.price);
   }, [productNum, post.price]);
+
   const plusHandler = () => {
     setProductNum(productNum + 1);
     setTotalPrice(productNum * post.price);
@@ -51,6 +52,7 @@ function DetailPost() {
       productNum: productNum,
     });
   }, [productNum, size]);
+
   const addCartHandler = () => {
     if (size === undefined) {
       alert("사이즈와, 수량을 선택해 주세요 ");
@@ -62,12 +64,20 @@ function DetailPost() {
     });
     console.log(bucket);
     const payload = [post.postId, bucket];
-    dispatch(__postBucket(payload));
-    alert("장바구니에 추가되었습니다");
+    dispatch(__postBucket(payload)).then(() => navigate("/bucket"));
+    alert("장바구니에 추가 되었습니다.");
+  };
+
+  const deleteHandler = (id) => {
+    alert("상품이 삭제 되었습니다.");
+    console.log("찍어봄");
+    dispatch(__deletePost(id)).then(() => navigate("/shop"));
+    // alert("상품이 삭제 되었습니다.");
+    // window.location.href = "/main";
   };
 
   return (
-    <div className="inner">
+    <div className="container">
       <section>
         <h3 id="proprietary">{post.title}</h3>
         <div>
@@ -93,10 +103,11 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={() => navigate("/editPost/:id")}>Edit</button>
-            <button onClick={() => navigate("/shop")}>Delete</button>
+            <button onClick={() => navigate(`/editPost/${id}`)}>Edit</button>
+            <button onClick={() => deleteHandler(id)}>Delete</button>
           </>
         ) : null}
+
         {size ? (
           <div className="orderBox">
             <div className="quantity">
