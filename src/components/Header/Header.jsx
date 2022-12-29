@@ -25,9 +25,7 @@ function Header() {
         <nav className="gnb">
           <ul className="clearfix">
             <li onClick={() => navigate("/Shop")}>Shop</li>
-            <li>
-              <a href="">Archive</a>
-            </li>
+            <li onClick={() => navigate("/Archive")}>Archive</li>
             <li>
               <a href="">Vue</a>
             </li>

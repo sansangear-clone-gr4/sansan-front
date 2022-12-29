@@ -10,3 +10,60 @@ body{
     background-size: cover;
     background-image: url(../../public/images/main_1118.jpg);
 }
+.image1{
+    margin: 0 auto;
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive1.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+.image2{
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive2.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+}
+.image3{
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive3.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+}
+.image4{
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive4.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.image5{
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive5.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+}
+.image6{
+    width: 800px;
+    height: 800px;
+    background-image: url(../../public/images/archive6.jpeg);
+    background-size: contain;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+
+}
