@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { __signUp, __userCheck } from "../redux/modules/userSlice";
 
 import styled from "styled-components";
+import "./reset.css"
+import "./style.css"
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -205,7 +207,7 @@ function SignUp() {
                       {PWPtag}
                     </p>
                   }
-                  <p>Confirm Password *</p>
+                  <p className="confirm">Confirm Password *</p>
                   <input
                     type="password"
                     value={PWConfirm}
@@ -311,13 +313,11 @@ const STSignUpForm = styled.div`
     input {
       width: 440px;
       height: 40px;
-      margin-bottom: 1.2rem;
       border: solid 1px #ddd;
       padding: 0.65rem;
       font-size: 13.5px;
     }
     p {
-      margin-top: 20px;
       text-align: left;
       font-size: 13.5px;
       font-weight: bold;
@@ -332,7 +332,7 @@ const STAdmin = styled.div`
   margin-top: 30px;
   span {
     font-weight: bold;
-    font-size: 0.75rem;
+    font-size: 13.5px;
   }
   .admin_input{
     width: 440px;
