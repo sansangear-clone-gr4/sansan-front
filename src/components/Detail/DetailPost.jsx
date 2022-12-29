@@ -22,8 +22,7 @@ function DetailPost() {
     size: size,
     productNum: productNum,
   });
-  console.log(size);
-  console.log(id);
+
   useEffect(() => {
     dispatch(__getPost(+id));
   }, []);
@@ -46,7 +45,7 @@ function DetailPost() {
     setProductNum(productNum - 1);
     setTotalPrice(productNum * post.price);
   };
-  console.log(size, productNum);
+
   useEffect(() => {
     setBucket({
       size: size,
@@ -65,19 +64,21 @@ function DetailPost() {
     });
     console.log(bucket);
     const payload = [post.postId, bucket];
-    dispatch(__postBucket(payload));
-    alert("장바구니에 추가되었습니다");
+    dispatch(__postBucket(payload)).then(() => navigate("/bucket"));
+    alert("장바구니에 추가 되었습니다.");
   };
-  
+
+
   const deleteHandler = (id) => {
-    console.log("찍는");
-    dispatch(__deletePost(id));
+    alert("상품이 삭제 되었습니다.");
+    console.log("찍어봄");
+    dispatch(__deletePost(id)).then(() => navigate("/shop"));
+
     // alert("상품이 삭제 되었습니다.");
     // window.location.href = "/main";
   };
 
-  console.log("bucket:", bucket);
-  console.log("size:", size, "quantity:", productNum);
+
   return (
     <div className="container">
       <section>
@@ -88,8 +89,7 @@ function DetailPost() {
       </section>
 
       <section className="section_image">
-        <img src="{post.imageUrl}" alt="상품사진" />
-
+        <img src={post.imageUrl} alt="상품사진" />
       </section>
       <section>
         <h3 id="price">{post.price}</h3>
@@ -106,11 +106,10 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={deleteHandler(id)}>Edit</button>
-            <button onClick={() => navigate("/shop")}>Delete</button>
+            <button onClick={() => navigate(`/editPost/${id}`)}>Edit</button>
+            <button onClick={() => deleteHandler(id)}>Delete</button>
           </>
         ) : null}
-        <button type="submit">Add To Cart </button>
 
         {size ? (
           <div className="orderBox">
@@ -125,7 +124,6 @@ function DetailPost() {
         <button type="submit" onClick={addCartHandler}>
           Add to Cart
         </button>
-
       </section>
     </div>
   );

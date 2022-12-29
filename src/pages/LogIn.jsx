@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import LayOut from "../components/LayOut/LayOut";
 import { postLogin } from "../core/login/queries";
-import { getCookie, setCookie } from "../shared/Cookie";
+import { getCookie, setCookie, setKakao } from "../shared/Cookie";
 function LogIn() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
@@ -72,6 +72,9 @@ function LogIn() {
                   className="signup"
                 >
                   SignUp
+                </button>
+                <button type="button" className="kakao">
+                  카카오로그인
                 </button>
               </STButton>
               <STAdditional>
@@ -153,6 +156,26 @@ const STButton = styled.div`
     color: black;
     background-color: white;
     border: solid 1px #ddd;
+  }
+  .kakao {
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    width: 440px;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: normal !important;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+
+    background-color: #ffff00;
+    border: solid 1px transparent;
+    a {
+    }
   }
 `;
 

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 import { instance, instance2 } from "../../core/api/axios";
 
@@ -15,7 +14,7 @@ export const __postPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await instance2.post("/api/posts", payload);
+      const data = await instance2.post("/api/posts", JSON.parse(payload));
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -23,16 +22,29 @@ export const __postPost = createAsyncThunk(
     }
   }
 );
+
+//https://kiml2175-dk.shop
+
 //(2)
 //datail 컴포넌트에서 디스패치로 payload를 받아옴
 //get요청하여 url주소에 payload
 export const __getPost = createAsyncThunk(
   "getPost",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const data = await instance.get(`/api/posts/${payload}`);
-      console.log(data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __getPosts = createAsyncThunk(
+  "getPosts",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await instance.get("/api/posts");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -67,7 +79,7 @@ export const __deletePost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await instance2.delete(`api/posts/${payload.id}`);
+      const data = await instance2.delete(`api/posts/${payload}`);
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -75,7 +87,6 @@ export const __deletePost = createAsyncThunk(
     }
   }
 );
-
 
 export const postSlice = createSlice({
   name: "post",
@@ -101,7 +112,6 @@ export const postSlice = createSlice({
     //(3)
     //_getPost가 fulfilled일때 state를 받아옴
     [__getPost.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.post = action.payload;
       //(4)서버에서 받은 payload를 post로 변환
@@ -114,6 +124,21 @@ export const postSlice = createSlice({
       console.log(state, action);
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    },
+    [__deletePost.fulfilled]: (state, action) => {
+      console.log(state, action);
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    [__getPosts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getPosts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload;
+    },
+    [__getPosts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });

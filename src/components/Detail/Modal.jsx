@@ -67,3 +67,4 @@ const ModalBtn = styled.button`
 `;
 
 export default Modal;
+

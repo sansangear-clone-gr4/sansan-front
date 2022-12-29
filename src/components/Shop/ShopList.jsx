@@ -1,14 +1,17 @@
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { __getPost } from "../../redux/modules/postSlice";
+
 import { useEffect } from "react";
-import "../../pages/reset.css"
-import "./style.css"
+import "../../pages/reset.css";
+import "./style.css";
 
 function ShopList(props) {
   const selectedCategory = props.category
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {posts, isLoading, isSuccess} = useSelector((state) => state.post)
 
   useEffect(() => {
@@ -34,6 +37,7 @@ function ShopList(props) {
       </div>
     </div>;
   }
+
 }
 
 export default ShopList;

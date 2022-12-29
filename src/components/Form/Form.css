@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 440px;
   height: 100%;
   margin: 0 auto;
@@ -14,22 +14,21 @@
 
   margin: 0 auto;
 }
-.inputTitle{
+.inputTitle {
   width: 440px;
   /* margin: 0 auto; */
 }
-.inputTitle input{
+.inputTitle input {
   padding: 20px;
 }
-.inputTitle ::placeholder{
+.inputTitle ::placeholder {
   font-size: 13.5px;
 }
-.inputTitle select{
+.inputTitle select {
   color: #000;
 }
-.image{
+.image {
   width: 440px;
-
 }
 .inputTitle > input,
 select {
@@ -40,7 +39,7 @@ select {
   padding: 20px;
   font-size: 13.5px;
 }
-.inputContent{
+.inputContent {
   margin: 0 auto;
 }
 .inputContent > textarea {
@@ -74,6 +73,6 @@ select {
   font-weight: normal;
   text-align: center;
 }
- input{
+input {
   margin-bottom: 15px;
- }
+}
