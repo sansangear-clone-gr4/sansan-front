@@ -106,8 +106,8 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={() => navigate(`/editPost/${id}`)}>Edit</button>
-            <button onClick={() => deleteHandler(id)}>Delete</button>
+            <button onClick={() => navigate(`/editPost/${id}`)} className="editbtn">Edit</button>
+            <button onClick={() => deleteHandler(id)} className="deletebtn">Delete</button>
           </>
         ) : null}
 

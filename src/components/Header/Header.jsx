@@ -66,7 +66,7 @@ function Header() {
           {cookie === "true" ? (
             <ul className="clearfix">
               <li>
-                <a href="/posting">상품등록</a>
+                {/* <a href="/posting">상품등록</a> */}
               </li>
             </ul>
           ) : null}
