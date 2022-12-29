@@ -68,13 +68,16 @@ function DetailPost() {
     alert("장바구니에 추가 되었습니다.");
   };
 
+
   const deleteHandler = (id) => {
     alert("상품이 삭제 되었습니다.");
     console.log("찍어봄");
     dispatch(__deletePost(id)).then(() => navigate("/shop"));
+
     // alert("상품이 삭제 되었습니다.");
     // window.location.href = "/main";
   };
+
 
   return (
     <div className="container">

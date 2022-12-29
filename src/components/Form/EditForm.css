@@ -1,79 +1,80 @@
-.container {
-  width: 440px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 140px 0;
-}
 
-.containerWrap {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  width: 440px;
-  height: 1500px;
-
-  margin: 0 auto;
-}
-.inputTitle {
-  width: 440px;
-  /* margin: 0 auto; */
-}
-.inputTitle input {
-  width: 440px;
-  padding: 20px;
-}
-.inputTitle ::placeholder {
-  font-size: 13.5px;
-}
-.inputTitle select {
-  color: #000;
-}
-.image {
-  width: 440px;
-}
-/* .inputTitle > input,
-select {
-  width: 440px;
-  height: 1.5rem;
-  margin-bottom: 0.25rem;
-  border: solid 1px #ddd;
-  padding: 20px;
-  font-size: 13.5px;
-} */
-.inputContent {
-  margin: 0 auto;
-}
-.inputContent > textarea {
-  width: 440px;
-  height: 100px;
-  margin-bottom: 0.25rem;
-  border: solid 1px #ddd;
-  padding: 20px;
-  font-size: 13.5px;
-}
-
-.inputPrice > input {
-  width: 440px;
-  height: 1.5rem;
-  margin-bottom: 0.25rem;
-  border: solid 1px #ddd;
-  padding: 0.65rem;
-  font-size: 13.5px;
-  padding: 20px;
-}
-
-.addBtn {
-  color: #fff;
-  background-color: #000;
-  cursor: pointer;
-  border: 0 none;
-  width: 440px;
-  height: 40px;
-  padding-left: 8px;
-  padding-right: 8px;
-  font-weight: normal;
-  text-align: center;
-}
-input {
-  margin-bottom: 15px;
-}
+container {
+    width: 440px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 140px 0;
+  }
+  
+  .containerWrap {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 440px;
+    height: 1500px;
+  
+    margin: 0 auto;
+  }
+  .inputTitle {
+    width: 440px;
+    /* margin: 0 auto; */
+  }
+  .inputTitle input {
+    width: 440px;
+    padding: 20px;
+  }
+  .inputTitle ::placeholder {
+    font-size: 13.5px;
+  }
+  .inputTitle select {
+    color: #000;
+  }
+  .image {
+    width: 440px;
+  }
+  /* .inputTitle > input,
+  select {
+    width: 440px;
+    height: 1.5rem;
+    margin-bottom: 0.25rem;
+    border: solid 1px #ddd;
+    padding: 20px;
+    font-size: 13.5px;
+  } */
+  .inputContent {
+    margin: 0 auto;
+  }
+  .inputContent > textarea {
+    width: 440px;
+    height: 100px;
+    margin-bottom: 0.25rem;
+    border: solid 1px #ddd;
+    padding: 20px;
+    font-size: 13.5px;
+  }
+  
+  .inputPrice > input {
+    width: 440px;
+    height: 1.5rem;
+    margin-bottom: 0.25rem;
+    border: solid 1px #ddd;
+    padding: 0.65rem;
+    font-size: 13.5px;
+    padding: 20px;
+  }
+  
+  .addBtn {
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
+    border: 0 none;
+    width: 440px;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: normal;
+    text-align: center;
+  }
+  input {
+    margin-bottom: 15px;
+  }

@@ -91,17 +91,12 @@ function LogIn() {
 }
 
 const STContainer = styled.div`
-  /* display: flex;
-  justify-content: center; */
-  /* position: absolute; */
   padding: 7.5rem 0;
   font-size: 13.5px;
   color: #000;
 `;
 
 const STInner = styled.div`
-  /* flex: 0 0 auto; */
-  /* width: 33.33333333%; */
   position: absolute;
   top: 50%;
   left: 50%;

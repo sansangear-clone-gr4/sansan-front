@@ -6,7 +6,9 @@ import {
   __getPost,
   __postPost,
 } from "../../redux/modules/postSlice";
-import "./EditForm.css";
+
+import "./EditForm.css"
+
 
 function EditForm() {
   const [editPost, setEditPost] = useState({
