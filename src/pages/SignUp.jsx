@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { __signUp, __userCheck } from "../redux/modules/userSlice";
 
 import styled from "styled-components";
-import "./reset.css"
-import "./style.css"
+import "./reset.css";
+import "./style.css";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -334,7 +334,7 @@ const STAdmin = styled.div`
     font-weight: bold;
     font-size: 13.5px;
   }
-  .admin_input{
+  .admin_input {
     width: 440px;
   }
 `;
