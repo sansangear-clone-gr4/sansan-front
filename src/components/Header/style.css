@@ -1,0 +1,36 @@
+.headerwrap{
+    height: 45px;
+    text-align: center;
+    padding: 13px 40px;
+    /* background: green; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.gnb li{
+    float: left;
+    margin-right: 31px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: bold;
+}
+
+.logo{
+    width: 243px;
+}
+.logo a{
+    display: block;
+    background-image: url(../../../public/images/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    background-size: contain;
+}
+
+.topmenu li{
+    float: left;
+    margin-left: 31px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: bold;
+}

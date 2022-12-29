@@ -1,18 +1,17 @@
-import DetailPost from "../components/Detail/DetailPost";
+import Cart from "../components/Cart/Cart";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import LayOut from "../components/LayOut/LayOut";
 
-function Detail() {
+function Bucket() {
   return (
     <>
       <Header />
       <LayOut>
-        <DetailPost />
+        <Cart />
       </LayOut>
       <Footer />
     </>
   );
 }
-
-export default Detail;
+export default Bucket;

@@ -1,5 +1,79 @@
+import { useNavigate } from "react-router-dom";
+import "../../pages/reset.css";
+import "./style.css";
+
+import { deleteCookie, getCookie } from "../../shared/Cookie";
+
 function Header() {
-  <return>난 헤더</return>;
+  const navigate = useNavigate();
+  const cookie = getCookie("is_login")
+
+  const deleteCookieHandler = () => {
+    deleteCookie("is_login");
+    navigate("/")
+  }
+
+  return (
+    <div>
+      <div className="headerwrap">
+        <nav className="gnb">
+          <ul className="clearfix">
+            <li onClick={() => navigate("/Shop")}>Shop</li>
+            <li>
+              <a href="">Archive</a>
+            </li>
+            <li>
+              <a href="">Vue</a>
+            </li>
+            <li>
+              <a href="">Stocklist</a>
+            </li>
+          </ul>
+        </nav>
+        <div className="logo">
+          <h1>
+            <a href="/">LOGO</a>
+          </h1>
+        </div>
+        <div className="topmenu">
+          {/* <ul className="clearfix">
+            <li>
+              <a href="">Contact</a>
+            </li>
+            {!localStorage.getItem("id") ? (
+              <li onClick={() => navigate("/LogIn")} className="LogIn">
+                Login
+              </li>
+            ) : (
+              <li
+                onClick={() => {
+                  localStorage.removeItem("id");
+                  navigate("/LogIn");
+                }}
+                className="LogIn"
+              >
+                Sign Out
+              </li>
+            )}
+            <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+          </ul> */}
+          {cookie ? (
+            <ul className="clearfix">
+              <li><a href="">Contact</a></li>
+              <li className="logout" onClick={deleteCookieHandler}>Log Out</li>
+              <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+            </ul>
+          ):(
+            <ul className="clearfix">
+              <li><a href="">Contact</a></li>
+              <li className="login" onClick={() => navigate("/LogIn")}>Login</li>
+              <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Header;
