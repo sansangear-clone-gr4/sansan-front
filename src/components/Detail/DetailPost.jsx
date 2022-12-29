@@ -68,6 +68,14 @@ function DetailPost() {
     dispatch(__postBucket(payload));
     alert("장바구니에 추가되었습니다");
   };
+  
+  const deleteHandler = (id) => {
+    console.log("찍는");
+    dispatch(__deletePost(id));
+    // alert("상품이 삭제 되었습니다.");
+    // window.location.href = "/main";
+  };
+
   console.log("bucket:", bucket);
   console.log("size:", size, "quantity:", productNum);
   return (
