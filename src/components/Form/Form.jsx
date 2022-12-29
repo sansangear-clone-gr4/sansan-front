@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
-import "../../pages/reset.css"
+import { instance2 } from "../../core/api/axios";
+import "../../pages/reset.css";
 import "./Form.css";
 
 function Form() {
@@ -22,7 +23,7 @@ function Form() {
     setImg(e.target.files[0]);
   };
 
-  const OnSubmitHandler = (e) => {
+  const OnSubmitHandler = async (e) => {
     e.preventDefault();
     const postForm = new FormData();
     postForm.append("title", post.title);
@@ -36,11 +37,12 @@ function Form() {
     for (let value of postForm.values()) {
       console.log(value);
     }
-    dispatch(__postPost(postForm));
+    const data = await instance2.post("/api/posts", postForm);
+    console.log(data);
+    // dispatch(__postPost(JSON.stringify(postForm)));
   };
 
   return (
-
     <div className="container">
       <form className="containerWarp" onSubmit={OnSubmitHandler}>
         <div className="inputTitle">
@@ -62,7 +64,7 @@ function Form() {
               setPost({ ...post, category: value });
             }}
           >
-            <option value="" selected>
+            <option value="" defaultValue>
               Category
             </option>
             <option value="0">Outer</option>
@@ -71,10 +73,11 @@ function Form() {
             <option value="3">Accessories</option>
           </select>
         </div>
-        <input type="file" onChange={getImage} className="image"/>
+        <input type="file" onChange={getImage} className="image" />
         <div className="inputContent">
           <textarea
-            rows="20" cols="100"
+            rows="20"
+            cols="100"
             type="text"
             id="content"
             placeholder="상품의 설명을 입력해주세요"
