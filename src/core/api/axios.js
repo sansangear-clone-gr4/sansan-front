@@ -65,5 +65,5 @@ instance3.interceptors.request.use((config) => {
 });
 
 export const kakao = {
-  kakaoLogin: (code) => kakaoLogin.get(`/user/kakao/callback?code=${code}`),
+  kakaoLogin: (code) => kakaoLogin.get(`/api/user/kakao/callback?code=${code}`),
 };

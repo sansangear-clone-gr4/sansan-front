@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { kakao } from "../core/api/axios";
 import { setCookie } from "../shared/Cookie";
+import Main from "./Main";
 
 const Kakao = () => {
   let code = new URL(window.location.href).searchParams.get("code");
@@ -24,7 +25,11 @@ const Kakao = () => {
       }
     });
 
-  return <div>난카카오페이지</div>;
+  return (
+    <>
+      <Main></Main>;
+    </>
+  );
 };
 
 export default Kakao;

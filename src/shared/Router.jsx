@@ -3,6 +3,7 @@ import Bucket from "../pages/Bucket";
 import Detail from "../pages/Detail";
 import EditPost from "../pages/EditPost";
 import FAQ from "../pages/FAQ";
+import Kakao from "../pages/KaKao";
 import LogIn from "../pages/LogIn";
 import Main from "../pages/Main";
 import Posting from "../pages/Posting";
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/editPost/:id" element={<EditPost />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/bucket" element={<Bucket />} />
+        <Route path="/api/user/kakao/callback" element={<Kakao />} />
       </Routes>
     </BrowserRouter>
   );

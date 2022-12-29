@@ -4,8 +4,9 @@ import styled from "styled-components";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import LayOut from "../components/LayOut/LayOut";
+import { KAKAO_AUTH_URL } from "../core/api/OAuth";
 import { postLogin } from "../core/login/queries";
-import { getCookie, setCookie, setKakao } from "../shared/Cookie";
+import { getCookie, setCookie } from "../shared/Cookie";
 function LogIn() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
@@ -74,7 +75,7 @@ function LogIn() {
                   SignUp
                 </button>
                 <button type="button" className="kakao">
-                  카카오로그인
+                  <a href={KAKAO_AUTH_URL}>카카오계정으로로그인</a>
                 </button>
               </STButton>
               <STAdditional>
@@ -171,11 +172,8 @@ const STButton = styled.div`
     vertical-align: middle;
     text-align: center;
     white-space: nowrap;
-
-    background-color: #ffff00;
+    background-color: #dada0c;
     border: solid 1px transparent;
-    a {
-    }
   }
 `;
 
