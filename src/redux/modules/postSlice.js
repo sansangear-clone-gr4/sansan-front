@@ -44,7 +44,10 @@ export const __getPosts = createAsyncThunk(
   "getPosts",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.get("/api/posts");
+      console.log(payload);
+      const data = await instance.get(
+        `/api/posts/category?category=${payload}`
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -135,6 +138,7 @@ export const postSlice = createSlice({
     },
     [__getPosts.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log(state, " :", action);
       state.posts = action.payload;
     },
     [__getPosts.rejected]: (state, action) => {
