@@ -31,18 +31,18 @@ function ShopList(props) {
   );
 }
 const STCard = styled.div`
-  width: 460px;
-  height: 550px;
+  margin: 0 auto;
   img {
-    width: 440px;
-    height: 540px;
-    margin: 0px 20px 0px 20px;
+    width: 300px;
+    height: 400px;
   }
 `;
 
 const STContainer = styled.div`
   display: flex;
-  max-width: 80%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
 `;
 
 export default ShopList;
