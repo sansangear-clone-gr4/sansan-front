@@ -67,3 +67,11 @@ body{
     background-repeat: no-repeat;
 
 }
+.vueimage{
+    width: 1000px;
+    height: 700px;
+    background-image: url(../../public/images/vueimage.png);
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

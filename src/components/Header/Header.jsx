@@ -26,9 +26,7 @@ function Header() {
           <ul className="clearfix">
             <li onClick={() => navigate("/Shop")}>Shop</li>
             <li onClick={() => navigate("/Archive")}>Archive</li>
-            <li>
-              <a href="">Vue</a>
-            </li>
+            <li onClick={() => navigate("/vue")}>Vue</li>
             <li>
               <a href="">Stocklist</a>
             </li>
