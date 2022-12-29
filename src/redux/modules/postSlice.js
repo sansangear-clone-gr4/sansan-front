@@ -62,6 +62,21 @@ export const __editPost = createAsyncThunk(
   }
 );
 
+export const __deletePost = createAsyncThunk(
+  "deletePost",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const data = await instance2.delete(`api/posts/${payload.id}`);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
