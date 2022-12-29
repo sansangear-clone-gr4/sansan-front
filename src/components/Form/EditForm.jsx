@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   __editPost,
   __getPost,
   __postPost,
 } from "../../redux/modules/postSlice";
+import "./EditForm.css"
 
 function EditForm() {
   const [editPost, setEditPost] = useState({

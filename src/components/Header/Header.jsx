@@ -2,8 +2,16 @@ import { useNavigate } from "react-router-dom";
 import "../../pages/reset.css";
 import "./style.css";
 
+import { deleteCookie, getCookie } from "../../shared/Cookie";
+
 function Header() {
   const navigate = useNavigate();
+  const cookie = getCookie("is_login")
+
+  const deleteCookieHandler = () => {
+    deleteCookie("is_login");
+    navigate("/")
+  }
 
   return (
     <div>
@@ -28,7 +36,7 @@ function Header() {
           </h1>
         </div>
         <div className="topmenu">
-          <ul className="clearfix">
+          {/* <ul className="clearfix">
             <li>
               <a href="">Contact</a>
             </li>
@@ -48,7 +56,20 @@ function Header() {
               </li>
             )}
             <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
-          </ul>
+          </ul> */}
+          {cookie ? (
+            <ul className="clearfix">
+              <li><a href="">Contact</a></li>
+              <li className="logout" onClick={deleteCookieHandler}>Log Out</li>
+              <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+            </ul>
+          ):(
+            <ul className="clearfix">
+              <li><a href="">Contact</a></li>
+              <li className="login" onClick={() => navigate("/LogIn")}>Login</li>
+              <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+            </ul>
+          )}
         </div>
       </div>
     </div>

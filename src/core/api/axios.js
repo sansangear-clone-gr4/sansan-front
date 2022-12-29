@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCookie } from "../../shared/Cookie";
 
 export const instance = axios.create({
-  baseURL: "http://54.180.126.52",
+  baseURL: "https://kiml2175-dk.shop",
   headers: {
     "Access-Control-Allow-Origin": "*",
     //"Content-type": "multipart/form-data",
@@ -10,7 +10,7 @@ export const instance = axios.create({
 });
 
 export const instance2 = axios.create({
-  baseURL: "http://54.180.126.52",
+  baseURL: "https://kiml2175-dk.shop",
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-type": "multipart/form-data",
@@ -18,7 +18,7 @@ export const instance2 = axios.create({
 });
 
 export const instance3 = axios.create({
-  baseURL: "http://54.180.126.52",
+  baseURL: "https://kiml2175-dk.shop",
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
