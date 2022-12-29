@@ -22,6 +22,7 @@ function Form() {
     setImg(e.target.files[0]);
   };
 
+
   const OnSubmitHandler = (e) => {
     alert("상품이 추가 되었습니다.");
     e.preventDefault();
@@ -37,6 +38,7 @@ function Form() {
     for (let value of postForm.values()) {
       console.log(value);
     }
+
     dispatch(__postPost(postForm));
     navigate("/shop");
   };
@@ -56,6 +58,7 @@ function Form() {
     }
   };
   return (
+
     <>
       <div className="container">
         <form className="containerWarp" onSubmit={OnSubmitHandler}>
@@ -117,6 +120,7 @@ function Form() {
         </form>
       </div>
     </>
+
   );
 }
 

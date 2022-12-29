@@ -22,8 +22,7 @@ function DetailPost() {
     size: size,
     productNum: productNum,
   });
-  console.log(size);
-  console.log(id);
+
   useEffect(() => {
     dispatch(__getPost(+id));
   }, []);
@@ -46,7 +45,7 @@ function DetailPost() {
     setProductNum(productNum - 1);
     setTotalPrice(productNum * post.price);
   };
-  console.log(size, productNum);
+
   useEffect(() => {
     setBucket({
       size: size,
@@ -77,8 +76,6 @@ function DetailPost() {
     // window.location.href = "/main";
   };
 
-  console.log("bucket:", bucket);
-  console.log("size:", size, "quantity:", productNum);
   return (
     <div className="container">
       <section>
