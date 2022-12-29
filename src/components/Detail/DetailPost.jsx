@@ -6,7 +6,7 @@ import { __deletePost, __getPost } from "../../redux/modules/postSlice";
 import { getCookie } from "../../shared/Cookie";
 import { __postBucket } from "../../redux/modules/bucketSlice";
 
-import "../../pages/reset.css"
+import "../../pages/reset.css";
 import "./DetailPost.css";
 
 function DetailPost() {
@@ -68,7 +68,6 @@ function DetailPost() {
     alert("장바구니에 추가 되었습니다.");
   };
 
-
   const deleteHandler = (id) => {
     alert("상품이 삭제 되었습니다.");
     console.log("찍어봄");
@@ -77,7 +76,6 @@ function DetailPost() {
     // alert("상품이 삭제 되었습니다.");
     // window.location.href = "/main";
   };
-
 
   return (
     <div className="detail_container">
@@ -93,7 +91,7 @@ function DetailPost() {
       </section>
       <section className="section_option">
         <h3 id="price">{post.price}</h3>
-        <p>Size</p>
+
         <a>Size Guide</a>
         <select value={size} onChange={(e) => setSize(Number(e.target.value))}>
           <option value="" defaultValue>
@@ -106,8 +104,15 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={() => navigate(`/editPost/${id}`)} className="editbtn">Edit</button>
-            <button onClick={() => deleteHandler(id)} className="deletebtn">Delete</button>
+            <button
+              onClick={() => navigate(`/editPost/${id}`)}
+              className="editbtn"
+            >
+              Edit
+            </button>
+            <button onClick={() => deleteHandler(id)} className="deletebtn">
+              Delete
+            </button>
           </>
         ) : null}
 

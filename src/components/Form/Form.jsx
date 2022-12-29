@@ -23,7 +23,6 @@ function Form() {
   };
 
   const OnSubmitHandler = (e) => {
-    alert("상품이 추가 되었습니다.");
     e.preventDefault();
     const postForm = new FormData();
     postForm.append("title", post.title);
@@ -37,9 +36,10 @@ function Form() {
     for (let value of postForm.values()) {
       console.log(value);
     }
-
+    console.log(postForm);
     dispatch(__postPost(postForm));
-    navigate("/shop");
+    //window.location.href = "/shop";
+    alert("상품이 추가 되었습니다.");
   };
 
   const checkOption = (option) => {
