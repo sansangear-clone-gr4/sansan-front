@@ -9,6 +9,8 @@ import Main from "../pages/Main";
 import Posting from "../pages/Posting";
 import Shop from "../pages/Shop";
 import SignUp from "../pages/SignUp";
+import Archive from "../pages/Archive";
+import Vue from "../pages/Vue";
 
 function Router() {
   return (
@@ -24,6 +26,8 @@ function Router() {
         <Route path="/editPost/:id" element={<EditPost />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/bucket" element={<Bucket />} />
+        <Route path="/Archive" element={<Archive />} />
+        <Route path="/Vue" element={<Vue />} />
         <Route path="/api/user/kakao/callback" element={<Kakao />} />
       </Routes>
     </BrowserRouter>

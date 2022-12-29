@@ -74,7 +74,9 @@ const STTab = styled.ul`
   list-style: none;
   width: 100%;
   padding: 0px 20px 0px 20px;
-  background-color: #000000c9;
+  background-color: #000000;
+  cursor: pointer;
+  
 
   li {
     text-align: center;
@@ -84,6 +86,9 @@ const STTab = styled.ul`
     font-size: 15px;
     color: #ffffff;
     text-decoration: none;
+    &:hover{
+    background: #353535c6;
+  }
   }
 `;
 
