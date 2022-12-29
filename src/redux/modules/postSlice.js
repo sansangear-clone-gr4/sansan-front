@@ -70,7 +70,7 @@ export const __deletePost = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await instance2.delete(`api/posts/${payload.id}`);
+      const data = await instance2.delete(`api/posts/${payload}`);
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {

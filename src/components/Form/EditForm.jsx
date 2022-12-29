@@ -57,7 +57,7 @@ function EditForm() {
     postForm.append("category", editPost.category);
     postForm.append("content", editPost.content);
     postForm.append("file", img);
-    dispatch(__editPost({ postForm, id }));
+    dispatch(__editPost({ postForm, id })).then(() => navigate("/shop"));
   };
 
   return (

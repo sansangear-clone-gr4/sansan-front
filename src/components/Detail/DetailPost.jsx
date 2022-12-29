@@ -65,13 +65,14 @@ function DetailPost() {
     });
     console.log(bucket);
     const payload = [post.postId, bucket];
-    dispatch(__postBucket(payload));
-    alert("장바구니에 추가되었습니다");
+    dispatch(__postBucket(payload)).then(() => navigate("/bucket"));
+    alert("장바구니에 추가 되었습니다.");
   };
 
   const deleteHandler = (id) => {
-    console.log("찍는");
-    dispatch(__deletePost(id));
+    alert("상품이 삭제 되었습니다.");
+    console.log("찍어봄");
+    dispatch(__deletePost(id)).then(() => navigate("/shop"));
     // alert("상품이 삭제 되었습니다.");
     // window.location.href = "/main";
   };
@@ -105,8 +106,8 @@ function DetailPost() {
 
         {getCookie("admin") === "true" ? (
           <>
-            <button onClick={deleteHandler(id)}>Edit</button>
-            <button onClick={() => navigate("/shop")}>Delete</button>
+            <button onClick={() => navigate(`/editPost/${id}`)}>Edit</button>
+            <button onClick={() => deleteHandler(id)}>Delete</button>
           </>
         ) : null}
 
