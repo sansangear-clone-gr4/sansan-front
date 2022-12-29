@@ -3,16 +3,22 @@ import "../../pages/reset.css";
 import "./style.css";
 
 import { deleteCookie, getCookie } from "../../shared/Cookie";
+import { useEffect } from "react";
 
 function Header() {
   const navigate = useNavigate();
-  const cookie = getCookie("is_login")
+  const cookie = getCookie("admin");
+  const cookie2 = getCookie("admin");
 
   const deleteCookieHandler = () => {
-    deleteCookie("is_login");
-    navigate("/")
-  }
-
+    deleteCookie("admin");
+    deleteCookie("userToken");
+    navigate("/");
+  };
+  useEffect(() => {
+    getCookie("admin");
+    getCookie("admin");
+  }, []);
   return (
     <div>
       <div className="headerwrap">
@@ -57,16 +63,34 @@ function Header() {
             )}
             <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
           </ul> */}
-          {cookie ? (
+          {cookie === "true" ? (
             <ul className="clearfix">
-              <li><a href="">Contact</a></li>
-              <li className="logout" onClick={deleteCookieHandler}>Log Out</li>
-              <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
+              <li>
+                <a href="/posting">상품등록</a>
+              </li>
             </ul>
-          ):(
+          ) : null}
+          {cookie2 ? (
             <ul className="clearfix">
-              <li><a href="">Contact</a></li>
-              <li className="login" onClick={() => navigate("/LogIn")}>Login</li>
+              <li>
+                <a href="/posting">상품등록</a>
+              </li>
+              <li>
+                <a href="">Contact</a>
+              </li>
+              <li className="logout" onClick={deleteCookieHandler}>
+                Log Out
+              </li>
+              <li onClick={() => navigate("/Bucket")}>Cart</li>
+            </ul>
+          ) : (
+            <ul className="clearfix">
+              <li>
+                <a href="">Contact</a>
+              </li>
+              <li className="login" onClick={() => navigate("/LogIn")}>
+                Login
+              </li>
               <li onClick={() => navigate("/Bucket")}>Cart (0)</li>
             </ul>
           )}
