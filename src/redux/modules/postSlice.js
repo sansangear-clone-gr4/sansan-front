@@ -129,6 +129,7 @@ export const postSlice = createSlice({
       console.log(state, action);
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+    },
     [__getPosts.pending]: (state) => {
       state.isLoading = true;
     },
