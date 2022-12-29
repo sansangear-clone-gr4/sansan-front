@@ -1,12 +1,15 @@
+import { Layout } from "antd";
+import Category from "../components/categoryNav/Category";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import ShopList from "../components/Shop/ShopList";
 
 function Shop() {
   return (
     <>
       <Header />
-      <ShopList />
+      <Layout>
+        <Category />
+      </Layout>
       <Footer />
     </>
   );

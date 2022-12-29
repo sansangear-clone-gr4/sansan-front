@@ -1,43 +1,48 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-
-import { useDispatch, useSelector } from "react-redux";
-import { __getPost } from "../../redux/modules/postSlice";
-
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import "../../pages/reset.css";
+import { __getPosts } from "../../redux/modules/postSlice";
 import "./style.css";
 
 function ShopList(props) {
-  const selectedCategory = props.category
+  const selectedCategory = props.category;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const {posts, isLoading, isSuccess} = useSelector((state) => state.post)
-
+  const posts = useSelector((state) => state.post.posts.list);
+  console.log(posts);
   useEffect(() => {
-    dispatch(__getPost(selectedCategory));
-  },[dispatch])
-
-  const onClick = (post) => {navigate(`detail/${post.postId}`, {state:post})}
-
-  if(isLoading === true){
-    return <div>로딩 중</div>
-  }
-  
-  if (isSuccess === true) {
-    return <div className="cardwrap">
-      <div>
-        {posts?.map((post) => (
-          <div key={post.postId} onclick={() => {onClick(post)}}>
-            <img src="{post.imageUrl}" alt="card_image" />
-            <div className="mask">{post.title}</div>
-            <div className="mask">{post.content}</div>
-          </div>
-        ))}
-      </div>
-    </div>;
-  }
-
+    dispatch(__getPosts(selectedCategory));
+  }, [selectedCategory, dispatch]);
+  console.log(selectedCategory);
+  return (
+    <STContainer>
+      {posts?.map((post) => (
+        <STCard
+          className="card"
+          key={post.postId}
+          onClick={() => navigate(`/detail/${post.postId}`)}
+        >
+          <img src={post.imageUrl} alt={"사진"} />
+        </STCard>
+      ))}
+    </STContainer>
+  );
 }
+const STCard = styled.div`
+  width: 460px;
+  height: 550px;
+  img {
+    width: 440px;
+    height: 540px;
+    margin: 0px 20px 0px 20px;
+  }
+`;
+
+const STContainer = styled.div`
+  display: flex;
+  max-width: 80%;
+`;
 
 export default ShopList;
