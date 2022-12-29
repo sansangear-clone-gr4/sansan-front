@@ -5,7 +5,7 @@ import Main from "./Main";
 
 const Kakao = () => {
   let code = new URL(window.location.href).searchParams.get("code");
-
+  console.log(code);
   kakao
     .kakaoLogin(code)
     .then((res) => {

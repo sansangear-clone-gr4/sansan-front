@@ -3,12 +3,12 @@ import "../../pages/reset.css";
 import "./style.css";
 
 import { deleteCookie, getCookie } from "../../shared/Cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Header() {
   const navigate = useNavigate();
   const cookie = getCookie("admin");
-  const cookie2 = getCookie("admin");
+  const cookie2 = getCookie("userToken");
 
   const deleteCookieHandler = () => {
     deleteCookie("admin");
@@ -17,8 +17,8 @@ function Header() {
   };
   useEffect(() => {
     getCookie("admin");
-    getCookie("admin");
-  }, []);
+    getCookie("userToken");
+  }, [getCookie()]);
   return (
     <div>
       <div className="headerwrap">
@@ -66,15 +66,12 @@ function Header() {
           {cookie === "true" ? (
             <ul className="clearfix">
               <li>
-                {/* <a href="/posting">상품등록</a> */}
+                <a href="/posting">상품등록</a>
               </li>
             </ul>
           ) : null}
           {cookie2 ? (
             <ul className="clearfix">
-              <li>
-                <a href="/posting">상품등록</a>
-              </li>
               <li>
                 <a href="">Contact</a>
               </li>

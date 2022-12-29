@@ -33,7 +33,7 @@ function LogIn() {
         alert("아이디 비밀번호를 다시한번 확인해주세요");
         console.log(error);
       });
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
