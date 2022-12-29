@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { __deleteBucket, __getBucket } from "../../redux/modules/bucketSlice";
+import {
+  __deleteBucket,
+  __editBucket,
+  __getBucket,
+} from "../../redux/modules/bucketSlice";
+import { __editPost } from "../../redux/modules/postSlice";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -10,23 +15,25 @@ function Cart() {
   const [total, setTotal] = useState();
   const [shipping, setShipping] = useState();
   const [subtotal, setSubtotal] = useState(0);
+
   useEffect(() => {
     dispatch(__getBucket());
   }, [dispatch]);
 
   const bucket = useSelector((state) => state.bucket.buckets);
   console.log(bucket);
-  const sumPrice = () => {
-    let sum = 0;
-    bucket.forEach((i) => {
-      sum += i.price;
-      return sum;
-    });
-  };
+
   useEffect(() => {
     let add = 0;
-    bucket.map((i) => setSubtotal((add += i.price)));
+    bucket.map((i) => setSubtotal((add += i.price * i.productNum)));
   }, [bucket]);
+  useEffect(() => {
+    if (subtotal <= 100000) {
+      setShipping(5000);
+    } else {
+      setShipping(0);
+    }
+  });
 
   console.log(subtotal);
   const deleteBucketHandler = (id) => {
@@ -34,12 +41,18 @@ function Cart() {
     dispatch(__deleteBucket(id));
   };
 
-  const minusHandler = () => {
-    setquantity(+quantity + 1);
-  };
-  const plusHandler = () => {
-    setquantity(+quantity + 1);
-  };
+  let newB;
+  // const minusHandler = (id) => {
+  //   bucket.map((b) => {
+  //     if (b.id === id) {
+  //       newB = { ...b, productNum: b.productNum - 1 };
+  //       return newB;
+  //     }
+  //   });
+  //   const newNum = newB.productNum;
+  //   dispatch(__editBucket({ id, newNum }));
+  // };
+  // const plusHandler = () => {};
 
   return (
     <STLayout>
@@ -80,9 +93,9 @@ function Cart() {
                           <li className="size">[size:{bucketItem.size}]</li>
                         </ul>
                         <div className="quantity">
-                          <button onClick={() => minusHandler}>-</button>
-                          <p value={quantity}>{bucketItem.productNum}</p>
-                          <button onClick={() => plusHandler}>+</button>
+                          <p value={bucketItem.productNum}>
+                            수량: {bucketItem.productNum}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -103,18 +116,28 @@ function Cart() {
               <div className="summary">
                 <div>
                   <div className="name">Subtotal</div>
-                  <span>{subtotal}</span>
+                  <span>{subtotal} KRW</span>
                 </div>
                 <div>
                   <div className="name">Shipping</div>
-                  <div>배송비 KRW</div>
+
+                  <div>KRW {shipping}</div>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      marginTop: "25px",
+                      color: "grey",
+                    }}
+                  >
+                    10만원 이상은 무료배송입니다
+                  </p>
                 </div>
               </div>
               <div className="total">
                 <div className="name">Total</div>
                 <span className="paymentPrice">
                   {total}
-                  <strong className="price">총 금액</strong>
+                  <strong className="price"> KRW {subtotal + shipping}</strong>
                 </span>
               </div>
             </div>

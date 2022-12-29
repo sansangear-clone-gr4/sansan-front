@@ -1,21 +1,15 @@
-const getCookie = (name) => {
-  // aa=xx; user_id=aaa; abbb=sssss; 여기서 user_id의 키값(aaa)을 알고 싶다
-  // [aa=xx, aaa; abbb=sssss;]
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
-  if (parts.length === 2) return parts.pop().split(";").shift();
+import { Cookies } from "react-cookie";
+
+const cookies = new Cookies();
+
+export const setCookie = (name, value, options) => {
+  return cookies.set(name, value, { ...options });
 };
 
-// 쿠키에 저장하는 함수
-const setCookie = (name, value, exp = 5) => {
-  let date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+export const getCookie = (name) => {
+  return cookies.get(name);
 };
 
-const deleteCookie = (name) => {
-  document.cookie =
-    name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;domain=localhost;path=[/]";
+export const deleteCookie = (name) => {
+  return cookies.remove(name, { path: "/" });
 };
-
-export { getCookie, setCookie, deleteCookie };

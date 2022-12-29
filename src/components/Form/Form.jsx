@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { __postPost } from "../../redux/modules/postSlice";
+import { instance2 } from "../../core/api/axios";
 import "../../pages/reset.css";
 import "./Form.css";
 
@@ -22,7 +23,7 @@ function Form() {
     setImg(e.target.files[0]);
   };
 
-  const OnSubmitHandler = (e) => {
+  const OnSubmitHandler = async (e) => {
     e.preventDefault();
     const postForm = new FormData();
     postForm.append("title", post.title);
@@ -36,7 +37,9 @@ function Form() {
     for (let value of postForm.values()) {
       console.log(value);
     }
-    dispatch(__postPost(postForm));
+    const data = await instance2.post("/api/posts", postForm);
+    console.log(data);
+    // dispatch(__postPost(JSON.stringify(postForm)));
   };
 
   return (

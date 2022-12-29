@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { instance2, instance3 } from "../../core/api/axios";
 
 const initialState = {
@@ -48,6 +49,22 @@ export const __deleteBucket = createAsyncThunk(
     }
   }
 );
+
+// export const __editBucket = createAsyncThunk(
+//   "editBucket",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const data = await axios.put(
+//         `http://43.2001.111.129/api/post/${payload[0]}`,
+//         payload[1]
+//       );
+//       return thunkAPI.fulfillWithValue(data.data);
+//     } catch (error) {
+//       alert("수정실패ㅠ");
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
 
 export const bucketSlice = createSlice({
   name: "bucket",
